@@ -1,7 +1,10 @@
 {
   "compilerOptions": {
-    "paths": {
-      "@/*": ["./*"]
-    }
+    "moduleResolution": "bundler", // of "nodenext"
+    "module": "esnext", // belangrijk voor ESM
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true
   }
 }
