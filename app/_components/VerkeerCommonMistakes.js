@@ -1,11 +1,11 @@
 function VerkeerCommonMistakes() {
   return (
-    <div className="bg-radial from-[#282828] to-[#181818] w-full py-30">
+    <div className="bg-radial from-[#282828] to-[#181818] w-full py-30 px-4">
       <div className="mx-auto max-w-7xl ">
-        <p className="mx-auto text-3xl font-medium text-center text-white w-120">
+        <p className="mx-auto text-3xl font-medium text-center text-white sm:w-120">
           De 3 Grootste Valkuilen bij Voertuigverzekeringen
         </p>
-        <div className="grid grid-cols-3 gap-12 mt-10">
+        <div className="grid grid-cols-1 gap-12 mt-10 md:grid-cols-3">
           <div className="relative text-center border border-gray-600 rounded-2xl shadow-md-custom backdrop-blur-md group-hover:-translate-y-1">
             <div className="relative overflow-hidden pt-6 px-4 pb-9 backdrop-blur-md bg-radial from-[#00af76]/10 from-20% to-[#004931]/10 to-70% -mb-5 rounded-t-2xl">
               <p className="relative text-xl font-medium text-white">

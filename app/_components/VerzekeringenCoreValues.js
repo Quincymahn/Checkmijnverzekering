@@ -13,7 +13,7 @@ function VerzekeringenCoreValues() {
           verzekeringsoplossingen.
         </p>
       </div>
-      <div className="grid w-full grid-cols-1 gap-10 px-4 mx-auto space-y-10 lg:grid-cols-3 max-w-7xl mt-25 lg:space-y-0">
+      <div className="grid w-full grid-cols-1 gap-10 px-4 mx-auto space-y-10 lg:grid-cols-3 max-w-7xl mt-25 lg:space-y-0 pb-30">
         <div className=" rounded-2xl text-center flex flex-col justify-center items-center bg-[#1b7ced] py-7">
           <div className="-mt-17  rounded-full border border-white h-20 w-20 bg-[#1b7ced] flex justify-center items-center">
             <LaptopMinimalCheck className="w-10 h-10 text-white" />

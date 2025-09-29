@@ -8,7 +8,7 @@ import { useState } from "react";
 const faqData = [
   {
     question: "Hoe werken schadevrije jaren?",
-    icon: "/img/certificate-icon.png", // <-- Icoon aangepast
+    icon: "/img/Generated Image September 23, 2025 - 3_28PM.png", // <-- Icoon aangepast
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -22,7 +22,7 @@ const faqData = [
   },
   {
     question: "Wat is het verschil tussen WA, Beperkt Casco en Allrisk?",
-    icon: "/img/car-crash-icon.png", // <-- Icoon aangepast
+    icon: "/img/Generated Image September 23, 2025 - 3_40PM.png", // <-- Icoon aangepast
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -36,7 +36,7 @@ const faqData = [
   },
   {
     question: "Ben ik direct verzekerd na het aanvragen?",
-    icon: "/img/file-check-icon.png", // <-- Icoon aangepast
+    icon: "/img/Generated Image September 23, 2025 - 3_50PM.png", // <-- Icoon aangepast
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -50,7 +50,7 @@ const faqData = [
   },
   {
     question: "Dekt mijn verzekering ook pechhulp?",
-    icon: "/img/roadside-assistance-icon.png", // <-- Icoon aangepast
+    icon: "/img/Generated Image September 23, 2025 - 3_38PM.png", // <-- Icoon aangepast
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -64,7 +64,7 @@ const faqData = [
   },
   {
     question: "Kan ik mijn verzekering dagelijks opzeggen?",
-    icon: "/img/calendar-icon.png", // <-- Icoon aangepast
+    icon: "/img/Generated Image September 23, 2025 - 3_45PM.png", // <-- Icoon aangepast
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -82,7 +82,7 @@ const faqData = [
 function VerkeerTabbedContent() {
   const [activeTab, setActiveTab] = useState(0);
   return (
-    <div className="mx-auto overflow-hidden border border-gray-300 mt-30 max-w-7xl rounded-2xl shadow-md-custom">
+    <div className="min-[1280px]:mx-auto mx-4 overflow-hidden border border-gray-300 my-30 max-w-7xl rounded-2xl shadow-md-custom">
       <div className="p-6">
         <p className="text-3xl font-medium">Veelgestelde Vragen over Verkeer</p>
       </div>

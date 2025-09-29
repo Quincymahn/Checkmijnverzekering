@@ -1,77 +1,101 @@
 import Image from "next/image";
-import Navbar from "./Navbar";
 import Link from "next/link";
 
 function Main() {
   return (
-    <div className="relative w-full h-screen p-4">
+    // We gebruiken 'min-h-screen' in plaats van 'h-screen' voor meer flexibiliteit op mobiel
+    <div className="w-full md:h-screen h-[75vh] p-2 sm:p-4">
       <div className="relative w-full h-full">
+        {" "}
+        {/* Min-hoogte voor de container */}
         <Image
-          src="/img/medium-shot-woman-man-road-trip.jpg"
+          src="/img/woman-driving-searching-camping-place.jpg"
           width={2000}
           height={2000}
           alt="Main hero section"
-          className="object-cover w-full h-full rounded-2xl"
+          // Op mobiel focussen we op het midden ('object-center'), op desktop meer naar rechts
+          className="object-cover object-center w-full h-full rounded-2xl lg:object-right-center"
         />
-        <div className="absolute inset-0 bg-black/20 rounded-2xl"></div>
-        <div className="absolute transform -translate-y-1/2 left-1/10 top-1/2">
-          <h1 className="mb-8 font-bold leading-normal text-white min-[1150px]:text-7xl min-[770px]:text-6xl min-[570px]:text-5xl text-4xl">
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-100% via-black/30 to-transparent rounded-2xl"></div>
+        {/*
+          POSITIE & UITLIJNING AANGEPAST VOOR MOBIEL:
+          - Standaard (mobiel): Gecentreerd, onderaan de pagina met padding.
+          - Vanaf 'lg' (desktop): Links uitgelijnd en in het midden.
+        */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center md:items-start md:justify-center md:p-0 md:text-left md:left-1/10 md:w-auto">
+          <h1 className="mb-6 text-4xl font-bold leading-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">
             Slim vergelijken, <br />
             slimmer verzekeren.
           </h1>
           <Link
-            href="#"
+            href="/plan-een-gesprek"
             className="
-    group relative inline-block text-lg font-medium
-    bg-[#00af76] text-white 
-    py-2 px-8 rounded-full
-    shadow-md-custom
-    overflow-hidden
-    transition-all duration-300
-  "
+              group relative inline-block text-lg font-medium
+              bg-[#00af76] text-white 
+              py-2 px-8 rounded-full
+              shadow-lg
+              overflow-hidden
+              transition-transform duration-300 hover:scale-105
+            "
           >
-            {/* Dit is het glans-element */}
             <span className="absolute top-0 w-full h-full transition-transform duration-500 ease-in-out transform -skew-x-12 -left-[105%] bg-gradient-to-r from-transparent to-white/30 group-hover:translate-x-[110%]"></span>
-
-            {/* Tekst moet relatief zijn */}
-            <span className="relative">Start vergelijken →</span>
+            <span className="relative">Start met vergelijken →</span>
           </Link>
         </div>
-
-        <div className="absolute flex overflow-hidden bg-gray-100 right-5 bottom-5 rounded-2xl shadow-md-custom">
+        {/*
+          POSITIE VAN DE REVIEW-KAART AANGEPAST:
+          - Standaard (mobiel): Niet zichtbaar ('hidden').
+          - Vanaf 'md' (tablet): Zichtbaar rechtsonder.
+        */}
+        <div className="absolute flex overflow-hidden shadow-lg bg-white/90 backdrop-blur-sm right-5 bottom-5 rounded-2xl">
           <Image
             src="/img/5369647.jpg"
-            width={200}
-            height={200}
-            alt="trustpilote review image"
-            className="object-cover h-40 w-30"
+            width={120}
+            height={160} // Aangepaste maten
+            alt="Illustratie van tevreden klanten"
+            className="hidden object-cover md:h-40 md:w-28 md:block" // Vaste maten
           />
-          <div className="flex flex-col justify-center gap-4 px-4">
-            <p className="text-3xl font-medium">5000+</p>
-            <div className="flex">
-              <Image
-                src="/img/handsome-happy-bearded-man.jpg"
-                width={50}
-                height={50}
-                alt="Headshot of a middle aged man"
-                className="object-cover w-8 h-8 rounded-full"
-              />
-              <Image
-                src="/img/business-man-by-skyscraper.jpg"
-                width={50}
-                height={50}
-                alt="Headshot of a middle aged man"
-                className="object-cover w-8 h-8 -ml-2 rounded-full"
-              />
-              <Image
-                src="/img/close-up-blonde-woman-outdoors.jpg"
-                width={50}
-                height={50}
-                alt="Headshot of a middle aged man"
-                className="object-cover w-8 h-8 -ml-2 rounded-full"
-              />
+          <div className="flex flex-col justify-center gap-3 px-4 py-2">
+            <Image
+              src="/img/5369647.jpg"
+              width={120}
+              height={160} // Aangepaste maten
+              alt="Illustratie van tevreden klanten"
+              className="absolute top-0 left-0 block object-cover w-full h-full md:hidden" // Vaste maten
+            />{" "}
+            <div className="absolute top-0 left-0 block w-full h-full bg-black/40 md:hidden"></div>
+            {/* Padding en gap aangepast */}
+            <div className="relative z-10 flex flex-col justify-around h-full space-y-1">
+              <p className="text-xl font-bold text-white md:text-3xl md:text-black">
+                5000+
+              </p>
+              <div className="flex">
+                <Image
+                  src="/img/handsome-happy-bearded-man.jpg"
+                  width={32}
+                  height={32}
+                  alt="Profielfoto van een klant"
+                  className="object-cover w-8 h-8 border-2 border-white rounded-full"
+                />
+                <Image
+                  src="/img/business-man-by-skyscraper.jpg"
+                  width={32}
+                  height={32}
+                  alt="Profielfoto van een klant"
+                  className="object-cover w-8 h-8 -ml-2 border-2 border-white rounded-full"
+                />
+                <Image
+                  src="/img/close-up-blonde-woman-outdoors.jpg"
+                  width={32}
+                  height={32}
+                  alt="Profielfoto van een klant"
+                  className="object-cover w-8 h-8 -ml-2 border-2 border-white rounded-full"
+                />
+              </div>
+              <p className="text-sm font-medium text-white md:text-base md:text-gray-800 md:font-base">
+                Tevreden klanten
+              </p>
             </div>
-            <p className="font-medium text-gray-700">Tevreden klanten</p>
           </div>
         </div>
       </div>

@@ -7,7 +7,7 @@ import { useState } from "react";
 const faqData = [
   {
     question: "Wat is het verschil tussen een opstal- en inboedelverzekering?",
-    icon: "/img/sofa.png", // <-- Nieuw relevant icoon
+    icon: "/img/inboedel-verzekering-icon.png", // <-- Nieuw relevant icoon
     answer: (
       <div className="space-y-5 text-gray-600">
         <p className="italic font-medium">
@@ -24,7 +24,7 @@ const faqData = [
   },
   {
     question: "Hoe wordt de herbouwwaarde van mijn huis bepaald?",
-    icon: "/img/math.png", // <-- Nieuw relevant icoon
+    icon: "/img/calculator-icon.png", // <-- Nieuw relevant icoon
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -43,7 +43,7 @@ const faqData = [
   },
   {
     question: "Ik woon in een appartement. Heb ik een opstalverzekering nodig?",
-    icon: "/img/appartments.png", // <-- Nieuw relevant icoon
+    icon: "/img/appartment-icon.png", // <-- Nieuw relevant icoon
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -63,7 +63,7 @@ const faqData = [
   },
   {
     question: "Zijn mijn schuur, schutting en zonnepanelen meeverzekerd?",
-    icon: "/img/eco-house.png", // <-- Nieuw relevant icoon
+    icon: "/img/huis-duurzaam-icon.png", // <-- Nieuw relevant icoon
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -82,7 +82,7 @@ const faqData = [
   },
   {
     question: "Is een opstalverzekering verplicht?",
-    icon: "/img/file.png",
+    icon: "/img/contract-icon.png",
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -133,7 +133,7 @@ function OpstalverzekeringTabbedContent() {
         <div className="p-10">
           <div className="mb-8">{faqData[activeTab].answer}</div>
           <Link
-            href="#"
+            href="/plan-een-gesprek"
             className="group relative inline-block self-start text-lg font-medium
     bg-[#00af76] text-white text-center
     py-1 px-6 rounded-full

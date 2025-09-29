@@ -7,8 +7,8 @@ import FietsverzekeringVergelijken from "../../../_components/FietsverzekeringVe
 import FietsverzekeringWhyUs from "../../../_components/FietsverzekeringWhyUs";
 import { getSortedPostsData } from "../../../_lib/posts";
 
-function page() {
-  const allPosts = getSortedPostsData();
+async function page() {
+  const allPosts = await getSortedPostsData();
 
   return (
     <div className="w-full overflow-hidden">

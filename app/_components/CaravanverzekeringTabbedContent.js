@@ -7,7 +7,7 @@ import { useState } from "react";
 const faqData = [
   {
     question: "Is mijn caravan verzekerd als hij gekoppeld is aan mijn auto?",
-    icon: "/img/towing-car.png", // <-- Nieuw relevant icoon
+    icon: "/img/tow-car.png", // <-- Nieuw relevant icoon
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -26,7 +26,7 @@ const faqData = [
   {
     question:
       "Wat is het verschil tussen nieuwwaarde- en aanschafwaarderegeling?",
-    icon: "/img/value.png",
+    icon: "/img/hand-coins.png",
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -54,7 +54,7 @@ const faqData = [
   {
     question:
       "Is de inhoud (inventaris) van mijn caravan standaard meeverzekerd?",
-    icon: "/img/stock-rotation.png", // <-- Nieuw relevant icoon
+    icon: "/img/money-up.png", // <-- Nieuw relevant icoon
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -72,7 +72,7 @@ const faqData = [
   },
   {
     question: "Wat zijn de eisen voor diefstalpreventie in de stalling?",
-    icon: "/img/lock.png",
+    icon: "/img/contract-icon.png",
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -97,7 +97,7 @@ const faqData = [
   },
   {
     question: "Wat moet ik doen bij pech met de caravan in het buitenland?",
-    icon: "/img/helicopter.png", // <-- Nieuw relevant icoon
+    icon: "/img/broken-car-2.png", // <-- Nieuw relevant icoon
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -153,7 +153,7 @@ function CaravanverzekeringTabbedContent() {
         <div className="p-10">
           <div className="mb-8">{faqData[activeTab].answer}</div>
           <Link
-            href="#"
+            href="/plan-een-gesprek"
             className="group relative inline-block self-start text-lg font-medium
     bg-[#00af76] text-white text-center
     py-1 px-6 rounded-full

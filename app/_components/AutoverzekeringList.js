@@ -47,7 +47,7 @@ function AutoverzekeringList() {
         </div>
       </div>
       <Image
-        src="/img/businesspeople-having-discussion-office.jpg" // <-- Nieuwe relevante afbeelding
+        src="/img/read-terms.jpg" // <-- Nieuwe relevante afbeelding
         width={300}
         height={300}
         alt="business people having a discussion"

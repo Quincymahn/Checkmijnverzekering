@@ -28,6 +28,13 @@ function MobileMenu() {
     if (isOpen) setTimeout(() => firstLinkRef.current?.focus(), 80);
   }, [isOpen]);
 
+  // Functie om het hele menu te sluiten
+  const closeMenu = () => {
+    setIsOpen(false);
+    setIsVerzekeringenOpen(false);
+    setActiveSubmenu(null);
+  };
+
   const verzekeringenItems = [
     {
       name: "Wonen",
@@ -94,11 +101,7 @@ function MobileMenu() {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           className="fixed inset-0 z-[9999]  bg-black/45"
-          onClick={() => {
-            setIsOpen(false);
-            setIsVerzekeringenOpen(false);
-            setActiveSubmenu(null);
-          }}
+          onClick={closeMenu}
         >
           <motion.aside
             initial={{ x: "100%" }}
@@ -112,11 +115,7 @@ function MobileMenu() {
           >
             <div className="relative min-h-full p-6">
               <button
-                onClick={() => {
-                  setIsOpen(false);
-                  setIsVerzekeringenOpen(false);
-                  setActiveSubmenu(null);
-                }}
+                onClick={closeMenu}
                 className="absolute p-2 text-gray-600 top-4 right-4 hover:text-gray-900"
                 aria-label="Close menu"
               >
@@ -128,11 +127,7 @@ function MobileMenu() {
                   href="/"
                   ref={firstLinkRef}
                   className="block text-lg font-medium text-gray-900 hover:text-[#00af76]"
-                  onClick={() => {
-                    setIsOpen(false);
-                    setIsVerzekeringenOpen(false);
-                    setActiveSubmenu(null);
-                  }}
+                  onClick={closeMenu}
                 >
                   Home
                 </Link>
@@ -140,37 +135,47 @@ function MobileMenu() {
                 <Link
                   href="/over-ons"
                   className="block text-lg font-medium text-gray-900 hover:text-[#00af76]"
-                  onClick={() => {
-                    setIsOpen(false);
-                    setIsVerzekeringenOpen(false);
-                    setActiveSubmenu(null);
-                  }}
+                  onClick={closeMenu}
                 >
                   Over ons
                 </Link>
 
                 {/* -------- Verzekeringen (parent) -------- */}
                 <div>
-                  <button
-                    onClick={() => {
-                      // toggle parent list
-                      setIsVerzekeringenOpen((s) => {
-                        const next = !s;
-                        if (!next) setActiveSubmenu(null); // close children when closing parent
-                        return next;
-                      });
-                    }}
-                    className="flex items-center justify-between w-full text-lg font-medium text-gray-900 hover:text-[#00af76] px-1"
-                    aria-expanded={isVerzekeringenOpen}
-                  >
-                    Verzekeringen
-                    <motion.span
-                      animate={{ rotate: isVerzekeringenOpen ? 180 : 0 }}
-                      transition={{ duration: 0.2 }}
+                  {/* --- AANPASSING HIER --- */}
+                  <div className="flex items-center justify-between w-full px-1">
+                    <Link
+                      href="/verzekeringen"
+                      className="text-lg font-medium text-gray-900 hover:text-[#00af76]"
+                      onClick={closeMenu}
                     >
-                      <ChevronDown className="w-5 h-5" />
-                    </motion.span>
-                  </button>
+                      Verzekeringen
+                    </Link>
+                    <button
+                      onClick={() => {
+                        setIsVerzekeringenOpen((s) => {
+                          const next = !s;
+                          if (!next) setActiveSubmenu(null);
+                          return next;
+                        });
+                      }}
+                      className="p-1"
+                      aria-expanded={isVerzekeringenOpen}
+                      aria-label={
+                        isVerzekeringenOpen
+                          ? "Sluit verzekeringen submenu"
+                          : "Open verzekeringen submenu"
+                      }
+                    >
+                      <motion.span
+                        animate={{ rotate: isVerzekeringenOpen ? 180 : 0 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        <ChevronDown className="w-5 h-5" />
+                      </motion.span>
+                    </button>
+                  </div>
+                  {/* --- EINDE AANPASSING --- */}
 
                   <AnimatePresence>
                     {isVerzekeringenOpen && (
@@ -182,17 +187,11 @@ function MobileMenu() {
                       >
                         {verzekeringenItems.map((item) => (
                           <div key={item.name}>
-                            {/* This button opens the specific submenu (Wonen, Verkeer...) */}
                             <div className="flex items-center justify-between">
                               <Link
                                 href={item.href}
                                 className="py-2 text-base text-gray-700 hover:text-[#00af76]"
-                                onClick={() => {
-                                  // navigate to parent page and close drawer
-                                  setIsOpen(false);
-                                  setIsVerzekeringenOpen(false);
-                                  setActiveSubmenu(null);
-                                }}
+                                onClick={closeMenu}
                               >
                                 {item.name}
                               </Link>
@@ -205,6 +204,7 @@ function MobileMenu() {
                                   )
                                 }
                                 className="p-1"
+                                aria-label={`Open ${item.name} submenu`}
                               >
                                 <ChevronDown
                                   className={`w-4 h-4 transition-transform ${
@@ -229,11 +229,7 @@ function MobileMenu() {
                                       key={subItem.name}
                                       href={subItem.href}
                                       className="block py-1 text-sm text-gray-600 hover:text-[#00af76]"
-                                      onClick={() => {
-                                        setIsOpen(false);
-                                        setIsVerzekeringenOpen(false);
-                                        setActiveSubmenu(null);
-                                      }}
+                                      onClick={closeMenu}
                                     >
                                       {subItem.name}
                                     </Link>
@@ -251,11 +247,7 @@ function MobileMenu() {
                 <Link
                   href="/nieuws"
                   className="block text-lg font-medium text-gray-900 hover:text-[#00af76]"
-                  onClick={() => {
-                    setIsOpen(false);
-                    setIsVerzekeringenOpen(false);
-                    setActiveSubmenu(null);
-                  }}
+                  onClick={closeMenu}
                 >
                   Nieuws
                 </Link>
@@ -264,11 +256,7 @@ function MobileMenu() {
                   <Link
                     href="/plan-een-gesprek"
                     className="block w-full text-center bg-[#00af76] text-white py-3 px-6 rounded-full font-medium hover:bg-[#009866] transition-colors"
-                    onClick={() => {
-                      setIsOpen(false);
-                      setIsVerzekeringenOpen(false);
-                      setActiveSubmenu(null);
-                    }}
+                    onClick={closeMenu}
                   >
                     Start gratis verglijking
                   </Link>
@@ -283,17 +271,15 @@ function MobileMenu() {
 
   return (
     <div className="min-[900px]:hidden flex items-center">
-      {/* Toggle sits in navbar visually but overlay is portaled */}
       <button
         onClick={() => setIsOpen((s) => !s)}
         aria-expanded={isOpen}
         aria-label={isOpen ? "Sluit menu" : "Open menu"}
-        className="p-2 text-white transition-all duration-200 border rounded-full border-white/30 bg-white/10 backdrop-blur-sm hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white/30"
+        className="p-2 text-gray-600 transition-all duration-200 border rounded-full bg-white/10 border-white/30 backdrop-blur-sm hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white/30"
       >
         {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
       </button>
 
-      {/* Portal the overlay/drawer to body so it's not constrained by navbar */}
       {mounted && createPortal(menu, document.body)}
     </div>
   );

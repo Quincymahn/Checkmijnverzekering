@@ -11,8 +11,8 @@ function page() {
       <VrijeTijdMain />
       <VrijeTijdInfoSection />
       <VrijeTijdCommonMistakes />
-      <VrijeTijdVoordelen />
       <VrijeTijdCta />
+      <VrijeTijdVoordelen />
       <VrijeTijdTabbedContent />
     </>
   );

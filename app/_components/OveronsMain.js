@@ -6,22 +6,23 @@ function OveronsMain() {
   return (
     <div className="w-full p-4">
       <div className="w-full pt-30 pb-10 lg:py-40 px-4 lg:h-130 bg-gradient-to-br from-[#09182b] from-30% to-[#193355] rounded-t-2xl">
+        {/* ... (rest of the top section code remains the same) ... */}
         <div className="relative mx-auto max-w-7xl">
           <div className="flex flex-col items-center justify-center gap-5 text-center lg:justify-between lg:mx-0 lg:text-left lg:gap-10 lg:flex-row">
             <h1 className="text-5xl min-[1200px]:text-6xl text-white">
               Wie zit er achter <p>de check?</p>
             </h1>
-            <p className="text-gray-300 w-120">
+            <p className="w-full text-gray-300 sm:w-120">
               Verzekeringen vergelijken saai en ingewikkeld? Niet met ons!
               Checkmijnverzekering maakt het makkelijk, overzichtelijk en
               eerlijk. Zo hou jij meer tijd en geld over voor de dingen die écht
               belangrijk zijn.
             </p>
             <Link
-              href="#"
+              href="/plan-een-gesprek"
               className=" bg-[#00af76] lg:hidden flex shadow-md-custom rounded-2xl text-white px-6 py-2  gap-4 items-center group text-lg font-medium overflow-hidden transition-all duration-300"
             >
-              <span className="absolute top-0 w-full h-full transition-transform duration-500 ease-in-out transform -skew-x-12 -left-[105%] bg-gradient-to-r from-transparent to-white/30 group-hover:translate-x-[110%]"></span>
+              <span className="absolute top-0 w-full h-full transition-transform duration-500 ease-in-out transform -skew-x-12 -left-[105%] bg-gradient-to-r from-transparent to-white/30 group-hover:translate-x-[110%] hidden lg:block"></span>
               <span className="relative">Start vergelijken</span>
               <CornerDownRight className="w-5 h-5 text-white" />
             </Link>
@@ -31,6 +32,7 @@ function OveronsMain() {
 
       <div className="lg:pt-60 px-4 pb-30 bg-radial from-[#282828] to-[#181818] rounded-b-2xl">
         <div className="relative mx-auto max-w-7xl">
+          {/* ... (rest of the SVG/image/link section code remains the same) ... */}
           <div className="absolute bg-[#00af76] lg:block hidden rounded-full w-7 h-7 -top-110.5 left-95 z-20" />
           <Link
             href="#"
@@ -72,34 +74,27 @@ function OveronsMain() {
             <p className="mt-10 text-4xl text-white">
               Uw Zekerheid In Vier Heldere <br /> Stappen
             </p>
-            <p className="mt-10 text-gray-300 w-100">
+            <p className="mt-10 text-gray-300 sm:w-100">
               Van onduidelijkheid naar een persoonlijk plan dat perfect aansluit
               op uw leven. Wij nemen u bij de hand, stap voor stap.
             </p>
           </div>
-          {/** --- GRID: use items-stretch so children vullen dezelfde hoogte --- */}
           <div className="grid items-stretch grid-cols-1 gap-4 mt-10 sm:grid-cols-2 lg:grid-cols-4 lg:mt-20">
             {/** Card 1 */}
             <div className="relative flex flex-col items-center justify-start h-full group">
               <div className="w-4 h-4 mb-5 rounded-full bg-gray-700/30 group-hover:bg-[#1b7ced] duration-300 transition-all" />
               <div className="absolute w-10 h-10 rounded-full bg-inherit group-hover:bg-[#1b7ced] -right-2 top-6 duration-300 transition-all" />
-
-              {/** Card container: flex-col & h-full so all cards equal height */}
               <div className="relative flex flex-col h-full overflow-hidden text-center transition-transform duration-300 bg-transparent border border-gray-600 rounded-2xl shadow-md-custom backdrop-blur-md group-hover:-translate-y-1">
-                {/** Top (groene) sectie: fixed height so equal for all cards */}
-                <div className="relative overflow-hidden pt-6 px-4 pb-6 backdrop-blur-md bg-radial from-[#00af76]/10 from-20% to-[#004931]/10 to-70% rounded-t-2xl h-28 md:h-25 lg:h-30 content-center">
+                {/* --- AANPASSING HIER: 'backdrop-blur-md' verwijderd --- */}
+                <div className="relative overflow-hidden pt-6 px-4 pb-6 bg-radial from-[#00af76]/10 from-20% to-[#004931]/10 to-70% rounded-t-2xl h-28 md:h-25 lg:h-30 content-center">
                   <div className="absolute inset-0 bg-radial from-[#E6E6E6]/10 to-[#8b8b8b]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   <p className="relative text-white">
                     Kennismaking & Inventarisatie
                   </p>
                 </div>
-
-                {/** Icon overlapping the green header: use negative margin to overlap visually */}
                 <div className="relative z-10 inline-flex items-center justify-center w-12 h-12 bg-gray-600 rounded-full -mt-6 mx-auto group-hover:bg-[#1b7ced] transition-all duration-300">
                   <p className="text-2xl text-white">01</p>
                 </div>
-
-                {/** Body: flex-grow so it takes remaining space making all cards equal height */}
                 <div className="flex-grow p-4">
                   <p className="text-gray-300">
                     In een vrijblijvend gesprek brengen we uw huidige situatie,
@@ -114,17 +109,15 @@ function OveronsMain() {
             <div className="relative flex flex-col items-center justify-start h-full group">
               <div className="w-4 h-4 mb-5 rounded-full bg-gray-700/30 group-hover:bg-[#1b7ced] duration-300 transition-all" />
               <div className="absolute w-10 h-10 rounded-full bg-inherit group-hover:bg-[#1b7ced] -right-2 top-6 duration-300 transition-all" />
-
               <div className="relative flex flex-col h-full overflow-hidden text-center transition-transform duration-300 bg-transparent border border-gray-600 rounded-2xl shadow-md-custom backdrop-blur-md group-hover:-translate-y-1">
-                <div className="relative overflow-hidden pt-6 px-4 pb-6 backdrop-blur-md bg-radial from-[#00af76]/10 from-20% to-[#004931]/10 to-70% rounded-t-2xl h-28 md:h-25 lg:h-30 content-center">
+                {/* --- AANPASSING HIER: 'backdrop-blur-md' verwijderd --- */}
+                <div className="relative overflow-hidden pt-6 px-4 pb-6 bg-radial from-[#00af76]/10 from-20% to-[#004931]/10 to-70% rounded-t-2xl h-28 md:h-25 lg:h-30 content-center">
                   <div className="absolute inset-0 bg-radial from-[#E6E6E6]/10 to-[#8b8b8b]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   <p className="relative text-white">Analyse & Vergelijking</p>
                 </div>
-
                 <div className="relative z-10 inline-flex items-center justify-center w-12 h-12 bg-gray-600 rounded-full -mt-6 mx-auto group-hover:bg-[#1b7ced] transition-all duration-300">
                   <p className="text-2xl text-white">02</p>
                 </div>
-
                 <div className="flex-grow p-4">
                   <p className="text-gray-300">
                     Met onze expertise analyseren we uw huidige polissen en
@@ -139,17 +132,15 @@ function OveronsMain() {
             <div className="relative flex flex-col items-center justify-start h-full group">
               <div className="w-4 h-4 mb-5 rounded-full bg-gray-700/30 group-hover:bg-[#1b7ced] duration-300 transition-all" />
               <div className="absolute w-10 h-10 rounded-full bg-inherit group-hover:bg-[#1b7ced] -right-2 top-6 duration-300 transition-all" />
-
               <div className="relative flex flex-col h-full overflow-hidden text-center transition-transform duration-300 bg-transparent border border-gray-600 rounded-2xl shadow-md-custom backdrop-blur-md group-hover:-translate-y-1">
-                <div className="relative overflow-hidden pt-6 px-4 pb-6 backdrop-blur-md bg-radial from-[#00af76]/10 from-20% to-[#004931]/10 to-70% rounded-t-2xl h-28 md:h-25 lg:h-30 content-center">
+                {/* --- AANPASSING HIER: 'backdrop-blur-md' verwijderd --- */}
+                <div className="relative overflow-hidden pt-6 px-4 pb-6 bg-radial from-[#00af76]/10 from-20% to-[#004931]/10 to-70% rounded-t-2xl h-28 md:h-25 lg:h-30 content-center">
                   <div className="absolute inset-0 bg-radial from-[#E6E6E6]/10 to-[#8b8b8b]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   <p className="relative text-white">Persoonlijk Advies</p>
                 </div>
-
                 <div className="relative z-10 inline-flex items-center justify-center w-12 h-12 bg-gray-600 rounded-full -mt-6 mx-auto group-hover:bg-[#1b7ced] transition-all duration-300">
                   <p className="text-2xl text-white">03</p>
                 </div>
-
                 <div className="flex-grow p-4">
                   <p className="text-gray-300">
                     U ontvangt een helder en begrijpelijk advies. We leggen de
@@ -164,17 +155,15 @@ function OveronsMain() {
             <div className="relative flex flex-col items-center justify-start h-full group">
               <div className="w-4 h-4 mb-5 rounded-full bg-gray-700/30 group-hover:bg-[#1b7ced] duration-300 transition-all" />
               <div className="absolute w-10 h-10 rounded-full bg-inherit group-hover:bg-[#1b7ced] -right-2 top-6 duration-300 transition-all" />
-
               <div className="relative flex flex-col h-full overflow-hidden text-center transition-transform duration-300 bg-transparent border border-gray-600 rounded-2xl shadow-md-custom backdrop-blur-md group-hover:-translate-y-1">
-                <div className="relative overflow-hidden pt-6 px-4 pb-6 backdrop-blur-md bg-radial from-[#00af76]/10 from-20% to-[#004931]/10 to-70% rounded-t-2xl h-28 md:h-25 lg:h-30 content-center">
+                {/* --- AANPASSING HIER: 'backdrop-blur-md' verwijderd --- */}
+                <div className="relative overflow-hidden pt-6 px-4 pb-6 bg-radial from-[#00af76]/10 from-20% to-[#004931]/10 to-70% rounded-t-2xl h-28 md:h-25 lg:h-30 content-center">
                   <div className="absolute inset-0 bg-radial from-[#E6E6E6]/10 to-[#8b8b8b]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   <p className="relative text-white">Implementatie & Service</p>
                 </div>
-
                 <div className="relative z-10 inline-flex items-center justify-center w-12 h-12 bg-gray-600 rounded-full -mt-6 mx-auto group-hover:bg-[#1b7ced] transition-all duration-300">
                   <p className="text-2xl text-white">04</p>
                 </div>
-
                 <div className="flex-grow p-4">
                   <p className="text-gray-300">
                     Gekozen? Wij regelen de volledige overstap of aanvraag van A

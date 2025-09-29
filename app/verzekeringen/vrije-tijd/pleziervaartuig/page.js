@@ -7,8 +7,8 @@ import PleziervaartuigverzekeringVergelijken from "../../../_components/Plezierv
 import PleziervaartuigverzekeringWhyUs from "../../../_components/PleziervaartuigverzekeringWhyUs";
 import { getSortedPostsData } from "../../../_lib/posts";
 
-function page() {
-  const allPosts = getSortedPostsData();
+async function page() {
+  const allPosts = await getSortedPostsData();
 
   return (
     <div className="w-full overflow-hidden">

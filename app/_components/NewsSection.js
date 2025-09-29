@@ -47,7 +47,7 @@ function NewsSection({ posts }) {
             </li>
           </ul>
           <Link
-            href="#"
+            href="/plan-een-gesprek"
             className="group relative inline-block text-lg self-start font-medium text-center
     bg-[#00af76] text-white 
     py-1 px-8 rounded-full

@@ -7,7 +7,7 @@ function ReisverzekeringMain() {
       <div className="relative w-full h-full">
         {/* Background Image and Overlay remain the same */}
         <Image
-          src="/img/couple-enjoying-picnic-together-outdoors-summertime.jpg"
+          src="/img/traveler-asian-couple-spending-holiday-trip-ayutthaya-thailand-backpacker-sweet-couple-enjoy-their-journey-amazing-landmark-traditional-city.jpg"
           fill
           alt="Grote glazen pui in een moderne woning met uitzicht op een tuin"
           className="object-cover w-full h-full rounded-2xl"
@@ -25,7 +25,7 @@ function ReisverzekeringMain() {
         >
           {/* A single container to control text-alignment for all children */}
           <div className="text-center md:text-left">
-            <h1 className="text-3xl font-bold leading-tight text-white sm:text-4xl md:text-5xl lg:text-6xl">
+            <h1 className="text-3xl font-bold leading-tight mt-10 text-white sm:text-4xl md:text-5xl lg:text-6xl">
               Reis & Annulerings <br /> verzekering
             </h1>
 

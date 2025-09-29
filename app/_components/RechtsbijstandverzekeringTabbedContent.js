@@ -25,7 +25,7 @@ const faqData = [
   },
   {
     question: "Mag ik mijn eigen advocaat kiezen?",
-    icon: "/img/lawyer.png", // <-- Nieuw relevant icoon
+    icon: "/img/jurist-icon.png", // <-- Nieuw relevant icoon
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -43,7 +43,7 @@ const faqData = [
   },
   {
     question: "Wat is het verschil met een aansprakelijkheidsverzekering?",
-    icon: "/img/legal.png", // <-- Nieuw relevant icoon
+    icon: "/img/balance.png", // <-- Nieuw relevant icoon
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -63,7 +63,7 @@ const faqData = [
   },
   {
     question: "Is een echtscheiding ook gedekt?",
-    icon: "/img/broken-heart.png", // <-- Nieuw relevant icoon
+    icon: "/img/broken-piggy-bank.png", // <-- Nieuw relevant icoon
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -78,7 +78,7 @@ const faqData = [
   },
   {
     question: "Wat als de verzekeraar mijn zaak niet kansrijk vindt?",
-    icon: "/img/file.png",
+    icon: "/img/contract-icon.png",
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -135,7 +135,7 @@ function RechtsbijstandverzekeringTabbedContent() {
         <div className="p-10">
           <div className="mb-8">{faqData[activeTab].answer}</div>
           <Link
-            href="#"
+            href="/plan-een-gesprek"
             className="group relative inline-block self-start text-lg font-medium
     bg-[#00af76] text-white text-center
     py-1 px-6 rounded-full

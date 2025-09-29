@@ -8,7 +8,7 @@ const faqData = [
   {
     question:
       "Is een glasverzekering standaard inbegrepen bij mijn opstalverzekering?",
-    icon: "/img/file.png",
+    icon: "/img/contract-icon.png",
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -27,7 +27,7 @@ const faqData = [
   },
   {
     question: "Wat moet ik doen als ik een gebroken ruit heb?",
-    icon: "/img/phone-call.png", // <-- Nieuw relevant icoon
+    icon: "/img/phone-icon.png", // <-- Nieuw relevant icoon
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -45,7 +45,7 @@ const faqData = [
   },
   {
     question: "Is speciaal glas zoals isolatieglas (HR++) ook gedekt?",
-    icon: "/img/windows.png", // <-- Nieuw relevant icoon
+    icon: "/img/gebroken-glas-icon.png", // <-- Nieuw relevant icoon
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -59,7 +59,7 @@ const faqData = [
   },
   {
     question: "Dekt de verzekering ook als ik zelf de ruit breek?",
-    icon: "/img/worker.png", // <-- Nieuw relevant icoon
+    icon: "/img/warning-icon.png", // <-- Nieuw relevant icoon
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -75,7 +75,7 @@ const faqData = [
   {
     question:
       "Ik huur een woning. Wie is verantwoordelijk voor de glasverzekering?",
-    icon: "/img/key-chain.png", // <-- Nieuw relevant icoon
+    icon: "/img/sleutels.png", // <-- Nieuw relevant icoon
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -128,7 +128,7 @@ function GlasverzekeringTabbedContent() {
         <div className="p-10">
           <div className="mb-8">{faqData[activeTab].answer}</div>
           <Link
-            href="#"
+            href="/plan-een-gesprek"
             className="group relative inline-block self-start text-lg font-medium
     bg-[#00af76] text-white text-center
     py-1 px-6 rounded-full

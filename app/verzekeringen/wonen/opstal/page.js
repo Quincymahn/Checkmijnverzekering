@@ -7,8 +7,8 @@ import OpstalverzekeringVergelijken from "../../../_components/Opstalverzekering
 import OpstalverzekeringWhyUs from "../../../_components/OpstalverzekeringWhyUs";
 import { getSortedPostsData } from "../../../_lib/posts";
 
-function page() {
-  const allPosts = getSortedPostsData();
+async function page() {
+  const allPosts = await getSortedPostsData();
 
   return (
     <div className="w-full overflow-hidden">

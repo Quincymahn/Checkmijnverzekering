@@ -25,7 +25,7 @@ function OpstalverzekeringMain() {
         >
           {/* A single container to control text-alignment for all children */}
           <div className="text-center md:text-left">
-            <h1 className="text-3xl font-bold leading-tight text-white sm:text-4xl md:text-5xl lg:text-6xl">
+            <h1 className="mt-10 text-3xl font-bold leading-tight text-white sm:text-4xl md:text-5xl lg:text-6xl">
               Opstalverzekering Vergelijken
               <span className="block mt-2 text-2xl font-normal sm:text-3xl md:text-4xl">
                 Bescherm uw kostbaarste bezit.

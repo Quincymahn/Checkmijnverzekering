@@ -7,7 +7,7 @@ import { useState } from "react";
 const faqData = [
   {
     question: "Wat is het verschil tussen nieuwwaarde en dagwaarde?",
-    icon: "/img/value.png", // <-- Nieuw relevant icoon
+    icon: "/img/hand-coins.png", // <-- Nieuw relevant icoon
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -27,7 +27,7 @@ const faqData = [
   },
   {
     question: "Zijn mijn laptop en telefoon ook buitenshuis verzekerd?",
-    icon: "/img/chat.png", // <-- Nieuw relevant icoon
+    icon: "/img/phone-icon.png", // <-- Nieuw relevant icoon
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -45,7 +45,7 @@ const faqData = [
   },
   {
     question: "Hoe voorkom ik dat ik onderverzekerd ben?",
-    icon: "/img/alert.png", // <-- Nieuw relevant icoon
+    icon: "/img/warning-icon.png", // <-- Nieuw relevant icoon
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -66,7 +66,7 @@ const faqData = [
   {
     question:
       "Ik ben student en woon op kamers. Heb ik een eigen verzekering nodig?",
-    icon: "/img/graduating-student.png", // <-- Nieuw relevant icoon
+    icon: "/img/student-icon.png", // <-- Nieuw relevant icoon
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -86,7 +86,7 @@ const faqData = [
   {
     question:
       "Dekt de inboedelverzekering ook de spullen in mijn schuur of tuin?",
-    icon: "/img/shed.png", // <-- Nieuw relevant icoo
+    icon: "/img/schuur-icon.png", // <-- Nieuw relevant icoo
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -141,7 +141,7 @@ function InboedelverzekeringTabbedContent() {
         <div className="p-10">
           <div className="mb-8">{faqData[activeTab].answer}</div>
           <Link
-            href="#"
+            href="/plan-een-gesprek"
             className="group relative inline-block self-start text-lg font-medium
     bg-[#00af76] text-white text-center
     py-1 px-6 rounded-full

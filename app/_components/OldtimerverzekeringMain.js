@@ -25,7 +25,7 @@ function OldtimerverzekeringMain() {
         >
           {/* A single container to control text-alignment for all children */}
           <div className="text-center md:text-left">
-            <h1 className="text-3xl font-bold leading-tight text-white sm:text-4xl md:text-5xl lg:text-6xl">
+            <h1 className="text-3xl font-bold leading-tight mt-10 text-white sm:text-4xl md:text-5xl lg:text-6xl">
               Oldtimerverzekering Vergelijken
               <p className="mt-2 text-2xl font-normal md:text-4xl">
                 Speciaal voor de échte liefhebber.

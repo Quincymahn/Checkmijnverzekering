@@ -8,7 +8,7 @@ import { useState } from "react";
 const faqData = [
   {
     question: "Ik huur een woning. Welke verzekeringen heb ik dan nodig?",
-    icon: "/img/key-icon.png", // <-- Icoon aangepast
+    icon: "/img/Generated Image September 23, 2025 - 2_48PM.png", // <-- Icoon aangepast
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -23,7 +23,7 @@ const faqData = [
   },
   {
     question: "Wat is het verschil tussen verkoopwaarde en herbouwwaarde?",
-    icon: "/img/value-icon.png", // <-- Icoon aangepast
+    icon: "/img/Generated Image September 23, 2025 - 2_52PM.png", // <-- Icoon aangepast
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -37,7 +37,7 @@ const faqData = [
   },
   {
     question: "Hoe weet ik of ik niet onderverzekerd ben?",
-    icon: "/img/warning-icon.png", // <-- Icoon aangepast
+    icon: "/img/Generated Image September 23, 2025 - 3_06PM.png", // <-- Icoon aangepast
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -53,7 +53,7 @@ const faqData = [
   },
   {
     question: "Is schade door mijn huisdier ook verzekerd?",
-    icon: "/img/pet-icon.png", // <-- Icoon aangepast
+    icon: "/img/Generated Image September 23, 2025 - 3_07PM.png", // <-- Icoon aangepast
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -68,7 +68,7 @@ const faqData = [
   },
   {
     question: "Ik ga verbouwen. Moet ik mijn verzekering aanpassen?",
-    icon: "/img/repair-icon.png", // <-- Icoon aangepast
+    icon: "/img/Generated Image September 23, 2025 - 3_13PM.png", // <-- Icoon aangepast
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -87,7 +87,7 @@ const faqData = [
 function WonenTabbedConent() {
   const [activeTab, setActiveTab] = useState(0);
   return (
-    <div className="mx-auto overflow-hidden border border-gray-300 mt-30 max-w-7xl rounded-2xl shadow-md-custom">
+    <div className="min-[1280px]:mx-auto mx-4 overflow-hidden border border-gray-300 my-30 max-w-7xl rounded-2xl shadow-md-custom">
       <div className="p-6">
         <p className="text-3xl font-medium">Veelgestelde vragen over Wonen</p>
       </div>

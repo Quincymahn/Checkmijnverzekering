@@ -2,11 +2,11 @@ import Image from "next/image";
 
 function OveronsSection() {
   return (
-    <div className="grid items-center max-w-5xl grid-cols-1 gap-20 px-4 mx-auto sm:grid-cols-2 place-items-center mt-50">
+    <div className="grid items-center max-w-5xl grid-cols-1 gap-20 px-4 mx-auto overflow-hidden sm:grid-cols-2 place-items-center pt-50">
       <div className="relative flex justify-end">
         <div className="w-40 h-40 bg-[#00af76] rounded-full absolute -top-12 -right-12"></div>
         <Image
-          src="/img/herobanner3.jpg"
+          src="/img/group-people-working-out-business-plan-office.jpg"
           width={500}
           height={500}
           alt="People in a meeting"
@@ -82,7 +82,7 @@ function OveronsSection() {
       <div className="relative flex justify-start">
         <div className="w-23 h-23 bg-[#00af76] rounded-full absolute z-20 bottom-12 -left-12"></div>
         <Image
-          src="/img/pexels-rebrand-cities-581004-1367269.jpg"
+          src="/img/authentic-small-youthful-marketing-agency.jpg"
           width={500}
           height={500}
           alt="People in a meeting"

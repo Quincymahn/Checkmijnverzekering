@@ -8,7 +8,7 @@ import { useState } from "react";
 const faqData = [
   {
     question: "Wat is het verschil tussen een ongevallen- en een AOV?",
-    icon: "/img/balance-icon.png", // <-- Icoon aangepast
+    icon: "/img/reisverzekering-icon.png", // <-- Icoon aangepast
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -22,7 +22,7 @@ const faqData = [
   },
   {
     question: "Heb ik rechtsbijstand nodig als ik al een AVP heb?",
-    icon: "/img/law-vs-shield-icon.png", // <-- Icoon aangepast
+    icon: "/img/reisverzekering-contract-icon.png", // <-- Icoon aangepast
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -36,7 +36,7 @@ const faqData = [
   },
   {
     question: "Waarom zou ik een overlijdensrisicoverzekering afsluiten?",
-    icon: "/img/family-protection-icon.png", // <-- Icoon aangepast
+    icon: "/img/overlijdenrisico-verzekering-icon.png", // <-- Icoon aangepast
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -50,7 +50,7 @@ const faqData = [
   },
   {
     question: "Is een ongevallenverzekering ook geldig op vakantie?",
-    icon: "/img/globe-icon.png", // <-- Icoon aangepast
+    icon: "/img/reis-en-annulering-verzekering-icon.png", // <-- Icoon aangepast
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -64,7 +64,7 @@ const faqData = [
   },
   {
     question: "Is er een wachttijd voor de rechtsbijstandverzekering?",
-    icon: "/img/calendar-icon.png", // <-- Icoon aangepast
+    icon: "/img/verzekering-wachttijd-icon.png", // <-- Icoon aangepast
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -81,7 +81,7 @@ const faqData = [
 function RechtEnZekerheidTabbedContent() {
   const [activeTab, setActiveTab] = useState(0);
   return (
-    <div className="mx-auto overflow-hidden border border-gray-300 mt-30 max-w-7xl rounded-2xl shadow-md-custom">
+    <div className="min-[1280px]:mx-auto mx-4 overflow-hidden border border-gray-300 my-30 max-w-7xl rounded-2xl shadow-md-custom">
       <div className="p-6">
         <p className="text-3xl font-medium">
           Veelgestelde Vragen over Recht & Zekerheid

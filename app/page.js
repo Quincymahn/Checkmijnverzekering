@@ -10,7 +10,7 @@ export default function Home() {
   const allPosts = getSortedPostsData();
 
   return (
-    <div className="w-full">
+    <div className="w-full overflow-hidden">
       <Main />
       <div className="px-4 mx-auto max-w-7xl">
         <InsuranceCards />

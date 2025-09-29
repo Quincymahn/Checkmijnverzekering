@@ -115,16 +115,16 @@ function TestimonialSection() {
         {/* Stats sectie blijft hetzelfde */}
         <div className="flex justify-around col-span-1 gap-3 p-6 bg-gray-100 border border-gray-300 sm:col-span-2 rounded-2xl shadow-md-custom">
           <div>
-            <p className="text-4xl font-medium sm:text-5xl ">7+</p>
-            <p className="mt-2 text-gray-600">Jaar ervaring</p>
+            <p className="text-4xl font-medium text-center sm:text-5xl">7+</p>
+            <p className="mt-2 text-center text-gray-600">Jaar ervaring</p>
           </div>
           <div>
-            <p className="text-4xl font-medium sm:text-5xl">95%</p>
-            <p className="mt-2 text-gray-600">Beveelt ons aan</p>
+            <p className="text-4xl font-medium text-center sm:text-5xl">95%</p>
+            <p className="mt-2 text-center text-gray-600">Beveelt ons aan</p>
           </div>
           <div>
-            <p className="text-4xl font-medium sm:text-5xl">20+</p>
-            <p className="mt-2 text-gray-600">Aanbieders</p>
+            <p className="text-4xl font-medium text-center sm:text-5xl">20+</p>
+            <p className="mt-2 text-center text-gray-600">Aanbieders</p>
           </div>
         </div>
       </div>

@@ -1,9 +1,16 @@
 import NieuwsMain from "../_components/NieuwsMain";
 import NieuwsSection from "../_components/NieuwsSection";
-import { getPostData, getSortedPostsData } from "../_lib/posts";
+import { getSortedPostsData } from "../_lib/posts"; // We gebruiken nu onze nieuwe functie
 
-async function page() {
-  const allPostsData = getSortedPostsData();
+// Dit is nu een async server component
+export default async function NieuwsPage() {
+  // Haal data direct op met onze nieuwe functie
+  const allPostsData = await getSortedPostsData();
+
+  // Voeg een check toe voor het geval er geen posts zijn
+  if (!allPostsData || allPostsData.length === 0) {
+    return <div>Geen nieuwsberichten gevonden.</div>;
+  }
 
   return (
     <div>
@@ -12,5 +19,3 @@ async function page() {
     </div>
   );
 }
-
-export default page;

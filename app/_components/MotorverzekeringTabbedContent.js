@@ -8,7 +8,7 @@ const faqData = [
   {
     question:
       "Wat is het verschil tussen WA, Beperkt Casco en Allrisk voor een motor?",
-    icon: "/img/scooter.png",
+    icon: "/img/scooter-icon.png",
     answer: (
       <>
         <p className="mb-4 text-2xl italic font-medium">
@@ -35,7 +35,7 @@ const faqData = [
   },
   {
     question: "Wat is een winterstop en hoe werkt het?",
-    icon: "/img/vehicle.png",
+    icon: "/img/motor-icon.png",
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -55,7 +55,7 @@ const faqData = [
   },
   {
     question: "Zijn mijn helm en motorkleding meeverzekerd?",
-    icon: "/img/helmet.png",
+    icon: "/img/helm-icon.png",
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -75,7 +75,7 @@ const faqData = [
   },
   {
     question: "Hoe werken schadevrije jaren en wat is een no-claimkorting?",
-    icon: "/img/encrypted.png",
+    icon: "/img/shild-check-icon.png",
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -94,7 +94,7 @@ const faqData = [
   {
     question:
       "Hoe werkt het overstappen en moet ik mijn oude verzekering zelf opzeggen?",
-    icon: "/img/bridge.png",
+    icon: "/img/overlijdenrisico-verzekering-icon.png",
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -149,7 +149,7 @@ function MotorverzekeringTabbedContent() {
         <div className="p-10">
           <div className="mb-8">{faqData[activeTab].answer}</div>
           <Link
-            href="#"
+            href="/plan-een-gesprek"
             className="group relative inline-block self-start text-lg font-medium
     bg-[#00af76] text-white text-center
     py-1 px-6 rounded-full

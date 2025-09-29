@@ -7,7 +7,7 @@ import { useState } from "react";
 const faqData = [
   {
     question: "Welke dekkingen zijn er voor een bromfiets of scooter?",
-    icon: "/img/scooter.png", // <-- Aangepast icoon
+    icon: "/img/scooter-icon.png", // <-- Aangepast icoon
     answer: (
       <>
         <p className="mb-4 text-2xl italic font-medium">
@@ -35,7 +35,7 @@ const faqData = [
   },
   {
     question: "Is een helm meeverzekerd?",
-    icon: "/img/helmet.png", // <-- Nieuw relevant icoon
+    icon: "/img/helm-icon.png", // <-- Nieuw relevant icoon
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -53,7 +53,7 @@ const faqData = [
   },
   {
     question: "Wat zijn de eisen voor een slot?",
-    icon: "/img/lock.png", // <-- Nieuw relevant icoon
+    icon: "/img/slot-icon.png", // <-- Nieuw relevant icoon
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -72,7 +72,7 @@ const faqData = [
   },
   {
     question: "Ben ik direct verzekerd na het aanvragen?",
-    icon: "/img/file.png",
+    icon: "/img/contract-icon.png",
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -90,7 +90,7 @@ const faqData = [
   },
   {
     question: "Hoe werkt het opzeggen van mijn oude verzekering?",
-    icon: "/img/bridge.png",
+    icon: "/img/overlijdenrisico-verzekering-icon.png",
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -141,7 +141,7 @@ function BromfietsverzekeringTabbedContent() {
         <div className="p-10">
           <div className="mb-8">{faqData[activeTab].answer}</div>
           <Link
-            href="#"
+            href="/plan-een-gesprek"
             className="group relative inline-block self-start text-lg font-medium
     bg-[#00af76] text-white text-center
     py-1 px-6 rounded-full

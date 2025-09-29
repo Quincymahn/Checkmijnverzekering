@@ -3,17 +3,17 @@ import Link from "next/link";
 
 function VrijeTijdInfoSection() {
   return (
-    <div className="grid max-w-4xl grid-cols-2 gap-10 mx-auto my-30">
-      <div>
+    <div className="grid max-w-4xl grid-cols-1 gap-10 px-4 mx-auto md:grid-cols-2 my-30">
+      <div className="order-2 md:order-1">
         <Image
-          src="/img/happy-man-his-wife-having-meeting-with-financial-advisor-signing-agreement-office.jpg"
+          src="/img/happy-couple-forest-being-together-camping (1).jpg"
           width={500}
           height={500}
           alt="happy couple signing financial contract"
-          className="object-cover w-full h-full rounded-2xl"
+          className="object-cover w-full md:h-115 h-80 rounded-2xl"
         />
       </div>
-      <div className="space-y-6">
+      <div className="order-1 space-y-6 md:order-2">
         <p className="text-3xl font-medium">Uw Passie, Goed Verzekerd</p>
         <p className="text-gray-600">
           Of uw passie nu ligt in het ontdekken van nieuwe landen, kamperen in
@@ -29,7 +29,7 @@ function VrijeTijdInfoSection() {
           belangrijk is: genieten van uw vrije tijd.
         </p>
         <Link
-          href="#"
+          href="/plan-een-gesprek"
           className="group relative inline-block self-start text-lg font-medium
     bg-[#00af76] text-white text-center
     py-1 px-6 rounded-full

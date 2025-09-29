@@ -28,7 +28,7 @@ function OpstalverzekeringCards() {
             we de herbouwwaarde voor een nauwkeurige offerte.
           </p>
           <Link
-            href="#"
+            href="/plan-een-gesprek"
             className="text-[#1b7ced] hover:text-blue-800 transition-all duration-300 group mt-auto"
           >
             Ga er naartoe{" "}
@@ -51,7 +51,7 @@ function OpstalverzekeringCards() {
             voorwaarden voor glas, zonnepanelen en uw tuin.
           </p>
           <Link
-            href="#"
+            href="/plan-een-gesprek"
             className="text-[#1b7ced] hover:text-blue-800 transition-all duration-300 group mt-auto"
           >
             Ga er naartoe{" "}
@@ -74,7 +74,7 @@ function OpstalverzekeringCards() {
             kostbaarste bezit direct goed verzekerd is.
           </p>
           <Link
-            href="#"
+            href="/plan-een-gesprek"
             className="text-[#1b7ced] hover:text-blue-800 transition-all duration-300 group mt-auto"
           >
             Ga er naartoe{" "}

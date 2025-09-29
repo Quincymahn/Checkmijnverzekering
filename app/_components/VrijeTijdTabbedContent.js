@@ -8,7 +8,7 @@ import { useState } from "react";
 const faqData = [
   {
     question: "Is een doorlopende of kortlopende reisverzekering beter?",
-    icon: "/img/calendar-icon.png", // <-- Icoon aangepast
+    icon: "/img/reis-en-annulering-verzekering-icon.png", // <-- Icoon aangepast
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -22,7 +22,7 @@ const faqData = [
   },
   {
     question: "Dekt mijn inboedelverzekering mijn gestolen e-bike niet?",
-    icon: "/img/house-vs-bicycle-icon.png", // <-- Icoon aangepast
+    icon: "/img/dief.png", // <-- Icoon aangepast
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -36,7 +36,7 @@ const faqData = [
   },
   {
     question: "Is de voortent van mijn caravan meeverzekerd?",
-    icon: "/img/tent-icon.png", // <-- Icoon aangepast
+    icon: "/img/caravan-voortent-icon.png", // <-- Icoon aangepast
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -50,7 +50,7 @@ const faqData = [
   },
   {
     question: "Is een bootverzekering verplicht in Nederland?",
-    icon: "/img/boat-question-icon.png", // <-- Icoon aangepast
+    icon: "/img/zeilboot-verzekering-icon.png", // <-- Icoon aangepast
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -64,7 +64,7 @@ const faqData = [
   },
   {
     question: "Wat moet ik doen bij pech of een noodgeval op reis?",
-    icon: "/img/phone-call-icon.png", // <-- Icoon aangepast
+    icon: "/img/reisverzekering-icon.png", // <-- Icoon aangepast
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -82,7 +82,7 @@ const faqData = [
 function VrijeTijdTabbedContent() {
   const [activeTab, setActiveTab] = useState(0);
   return (
-    <div className="mx-auto overflow-hidden border border-gray-300 mt-30 max-w-7xl rounded-2xl shadow-md-custom">
+    <div className="min-[1280px]:mx-auto mx-4 overflow-hidden border border-gray-300 my-30 max-w-7xl rounded-2xl shadow-md-custom">
       <div className="p-6">
         <p className="text-3xl font-medium">
           Veelgestelde Vragen over Vrije Tijd

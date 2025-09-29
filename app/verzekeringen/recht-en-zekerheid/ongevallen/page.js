@@ -7,8 +7,8 @@ import OngevallenverzekeringVergelijken from "../../../_components/Ongevallenver
 import OngevallenverzekeringWhyUs from "../../../_components/OngevallenverzekeringWhyUs";
 import { getSortedPostsData } from "../../../_lib/posts";
 
-function page() {
-  const allPosts = getSortedPostsData();
+async function page() {
+  const allPosts = await getSortedPostsData();
 
   return (
     <div className="w-full overflow-hidden">

@@ -127,10 +127,10 @@ function Footer() {
                   Over ons
                 </Link>
                 <Link
-                  href="/contact"
+                  href="/verzekeringen"
                   className="text-sm text-gray-400 transition-colors duration-300 hover:text-white"
                 >
-                  Contact
+                  Verzekeringen
                 </Link>
                 <Link
                   href="/nieuws"
@@ -139,10 +139,10 @@ function Footer() {
                   Nieuws & Blog
                 </Link>
                 <Link
-                  href="/faq"
+                  href="/plan-een-gesprek"
                   className="text-sm text-gray-400 transition-colors duration-300 hover:text-white"
                 >
-                  Veelgestelde Vragen
+                  Plan een gesprek
                 </Link>
               </nav>
             </div>
@@ -154,25 +154,31 @@ function Footer() {
               </h3>
               <nav className="flex flex-col space-y-3">
                 <Link
-                  href="#"
+                  href="/disclaimer"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-sm text-gray-400 transition-colors duration-300 hover:text-white"
                 >
                   Disclaimer
                 </Link>
                 <Link
-                  href="#"
+                  href="/klachtenregeling"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-sm text-gray-400 transition-colors duration-300 hover:text-white"
                 >
                   Klachtenregeling
                 </Link>
                 <Link
-                  href="#"
+                  href="/vergelijkingskaart"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-sm text-gray-400 transition-colors duration-300 hover:text-white"
                 >
                   Vergelijkingskaart
                 </Link>
                 <Link
-                  href="#"
+                  href="/credits"
                   className="text-sm text-gray-400 transition-colors duration-300 hover:text-white"
                 >
                   Image credits
@@ -193,22 +199,20 @@ function Footer() {
             </p>
             <nav className="flex flex-wrap gap-6 md:gap-8">
               <Link
-                href="/algemene-voorwaarden"
+                href="/gebruikers-voorwaarden"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-sm text-gray-400 transition-colors duration-300 hover:text-white"
               >
-                Algemene voorwaarden
+                Gebruikers voorwaarden
               </Link>
               <Link
-                href="/klachtenregeling"
+                href="/privacybeleid"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-sm text-gray-400 transition-colors duration-300 hover:text-white"
               >
-                Klachtenregeling
-              </Link>
-              <Link
-                href="/privacyverklaring"
-                className="text-sm text-gray-400 transition-colors duration-300 hover:text-white"
-              >
-                Privacyverklaring
+                Privacybeleid
               </Link>
             </nav>
           </div>

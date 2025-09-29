@@ -7,7 +7,7 @@ import { useState } from "react";
 const faqData = [
   {
     question: "Welk slot heb ik nodig voor mijn fietsverzekering?",
-    icon: "/img/lock.png",
+    icon: "/img/slot-icon.png",
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -26,7 +26,7 @@ const faqData = [
   },
   {
     question: "Wat is een 3-jarige nieuwwaarderegeling?",
-    icon: "/img/value.png",
+    icon: "/img/hand-coins.png",
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -45,7 +45,7 @@ const faqData = [
   },
   {
     question: "Is de accu van mijn e-bike ook verzekerd?",
-    icon: "/img/battery.png", // <-- Nieuw relevant icoon
+    icon: "/img/batterij-icon.png", // <-- Nieuw relevant icoon
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -64,7 +64,7 @@ const faqData = [
   },
   {
     question: "Wat is Pechhulp en hoe werkt het?",
-    icon: "/img/assistance.png",
+    icon: "/img/pechhulp-icon.png",
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -83,7 +83,7 @@ const faqData = [
   },
   {
     question: "Dekt mijn inboedelverzekering mijn fiets niet?",
-    icon: "/img/bicycle.png", // <-- Nieuw relevant icoon
+    icon: "/img/fiets-verzekering-icon.png", // <-- Nieuw relevant icoon
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -140,7 +140,7 @@ function FietsverzekeringTabbedContent() {
         <div className="p-10">
           <div className="mb-8">{faqData[activeTab].answer}</div>
           <Link
-            href="#"
+            href="/plan-een-gesprek"
             className="group relative inline-block self-start text-lg font-medium
     bg-[#00af76] text-white text-center
     py-1 px-6 rounded-full

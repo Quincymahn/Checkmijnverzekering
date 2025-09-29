@@ -18,7 +18,7 @@ function FietsverzekeringCards() {
         <div className="absolute bg-[#00af76] rounded-full w-40 h-40 -top-10 -left-10"></div>
         <div className="flex flex-col items-center h-full px-6 py-5 text-center border border-white rounded-2xl backdrop-blur-md bg-gray-400/20 shadow-md-custom">
           <Image
-            src="/img/identity-theft.png" // <-- Nieuw relevant icoon
+            src="/img/fietsdief-main-icon.png" // <-- Nieuw relevant icoon
             width={60}
             height={60}
             alt="Diefstal icoon"
@@ -30,7 +30,7 @@ function FietsverzekeringCards() {
             volledige aanschafwaarde terug voor een nieuwe fiets.
           </p>
           <Link
-            href="#"
+            href="/plan-een-gesprek"
             className="text-[#1b7ced] hover:text-blue-800 transition-all duration-300 group mt-auto"
           >
             Ga er naartoe{" "}
@@ -41,7 +41,7 @@ function FietsverzekeringCards() {
         </div>
         <div className="flex flex-col items-center h-full px-6 py-5 text-center border border-white rounded-2xl backdrop-blur-md bg-gray-400/20 shadow-md-custom">
           <Image
-            src="/img/bicycle.png" // <-- Nieuw relevant icoon
+            src="/img/Valstrik met de teal fiets.png" // <-- Nieuw relevant icoon
             width={60}
             height={60}
             alt="Fiets met schade icoon"
@@ -53,7 +53,7 @@ function FietsverzekeringCards() {
             gedekt met een Allrisk-verzekering.
           </p>
           <Link
-            href="#"
+            href="/plan-een-gesprek"
             className="text-[#1b7ced] hover:text-blue-800 transition-all duration-300 group mt-auto"
           >
             Ga er naartoe{" "}
@@ -64,7 +64,7 @@ function FietsverzekeringCards() {
         </div>
         <div className="flex flex-col items-center h-full px-6 py-5 text-center border border-white rounded-2xl backdrop-blur-md bg-gray-400/20 shadow-md-custom">
           <Image
-            src="/img/assistance.png"
+            src="/img/medical-heart.png"
             width={60}
             height={60}
             alt="Pechhulp icoon"
@@ -76,7 +76,7 @@ function FietsverzekeringCards() {
             wordt u opgehaald en weer op weg geholpen.
           </p>
           <Link
-            href="#"
+            href="/plan-een-gesprek"
             className="text-[#1b7ced] hover:text-blue-800 transition-all duration-300 group mt-auto"
           >
             Ga er naartoe{" "}

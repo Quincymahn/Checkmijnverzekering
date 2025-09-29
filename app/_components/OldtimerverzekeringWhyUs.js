@@ -6,32 +6,32 @@ function OldtimerverzekeringWhyUs() {
     <div className="grid max-w-4xl grid-cols-1 gap-5 px-4 mx-auto lg:grid-cols-2 my-30 lg:gap-x-10">
       <div className="grid order-2 grid-cols-2 gap-3 lg:order-1">
         <Image
-          src="/img/istockphoto-541114144-612x612.jpg"
+          src="/img/young-handsome-man-working-his-office-with-mobile-phone.jpg"
           width={300}
           height={300}
           alt="2 people in a meeting"
-          className="object-cover w-full rounded-2xl lg:w-53 lg:h-50"
+          className="object-cover w-full h-40 rounded-2xl lg:w-53 lg:h-50"
         />
         <Image
-          src="/img/istockphoto-1338523355-612x612.jpg"
+          src="/img/woman-checking-engine-man-swapping-tire.jpg"
           width={300}
           height={300}
           alt="2 people in a meeting"
-          className="object-cover w-full rounded-2xl lg:w-53 lg:h-50"
+          className="object-cover w-full h-40 rounded-2xl lg:w-53 lg:h-50"
         />
         <Image
-          src="/img/middle-aged-hispanic-business-people.jpg"
+          src="/img/cute-family-spending-time-together.jpg"
           width={300}
           height={300}
           alt="2 people in a meeting"
-          className="object-cover w-full rounded-2xl lg:w-53 lg:h-50"
+          className="object-cover w-full h-40 rounded-2xl lg:w-53 lg:h-50"
         />
         <Image
-          src="/img/istockphoto-1419539600-612x612.jpg"
+          src="/img/applying-vacancy.jpg"
           width={300}
           height={300}
           alt="2 people in a meeting"
-          className="object-cover w-full rounded-2xl lg:w-53 lg:h-50"
+          className="object-cover w-full h-40 rounded-2xl lg:w-53 lg:h-50"
         />
       </div>
       <div className="flex flex-col justify-between order-1 lg:order-2">
@@ -53,12 +53,12 @@ function OldtimerverzekeringWhyUs() {
             Geen verrassingen bij schade.
           </li>
           <li>
-            <b>Persoonlijk Advies:</b> Elke woning is anders. We bieden advies
+            <b>Persoonlijk Advies:</b> Elke situatie is anders. We bieden advies
             op maat voor uw specifieke situatie.
           </li>
         </ul>
         <Link
-          href="#"
+          href="/plan-een-gesprek"
           className="group relative inline-block self-start text-lg font-medium
           bg-[#00af76] text-white text-center
           py-1 px-6 rounded-full

@@ -34,15 +34,15 @@ function VerzekeringenAccordion() {
   };
 
   return (
-    <div className="max-w-5xl mx-auto py-30">
-      <p className="font-medium text-3xl">
+    <div className="max-w-5xl px-4 mx-auto py-30">
+      <p className="text-3xl font-medium text-center sm:text-left">
         Vind hier snel het antwoord op de <br /> meest voorkomende vraag.
       </p>
       <div className="mt-10">
         {accordionData.map((item, index) => (
-          <div key={index} className="border-b border-gray-300 py-5">
+          <div key={index} className="py-5 border-b border-gray-300">
             <div
-              className="flex justify-between items-center cursor-pointer"
+              className="flex items-center justify-between cursor-pointer"
               onClick={() => handleToggle(index)}
             >
               <p className="font-medium">{item.question}</p>
@@ -53,7 +53,7 @@ function VerzekeringenAccordion() {
               )}
             </div>
             {openIndex === index && (
-              <div className="mt-4 pr-10">
+              <div className="pr-10 mt-4">
                 <p className="text-gray-600">{item.answer}</p>
               </div>
             )}

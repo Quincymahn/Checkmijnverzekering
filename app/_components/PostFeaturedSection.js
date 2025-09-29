@@ -47,7 +47,7 @@ function PostFeaturedSection({ currentPost, allPosts }) {
           Checkmijnverzekering.
         </p>
         <Link
-          href="/"
+          href="/plan-een-gesprek"
           className="group relative inline-block text-lg font-medium
             bg-[#00af76] text-white 
             py-1 px-8 rounded-full

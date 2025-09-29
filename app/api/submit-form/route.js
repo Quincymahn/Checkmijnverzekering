@@ -17,15 +17,41 @@ export async function POST(request) {
 
   try {
     // ==========================================================
+    // --- Data voorbereiden ---
+    // ==========================================================
+
+    // 1. Maak een aparte opmerking voor de spreadsheet (incl. polis link)
+    const { polisFileUrl, opmerking } = formData;
+    let sheetOpmerkingen = opmerking || "";
+    if (polisFileUrl) {
+      const linkText = `Polisblad: ${polisFileUrl}`;
+      sheetOpmerkingen = sheetOpmerkingen
+        ? `${sheetOpmerkingen} | ${linkText}`
+        : linkText;
+    }
+
+    // 2. Maak een gecombineerd adres voor de spreadsheet
+    const sheetAdres = [
+      formData.street,
+      formData.huisnummer,
+      formData.huisnummerToevoeging,
+    ]
+      .filter(Boolean)
+      .join(" ")
+      .trim();
+
+    // ==========================================================
     // STAP 1: Data opslaan in MySQL en de nieuwe ID ophalen
     // ==========================================================
     console.log("Poging tot verbinden met MySQL database...");
     connection = await mysql.createConnection(dbConfig);
 
+    // --- WIJZIGING: Voeg 'straat' en 'plaats' toe aan de query ---
     const mysqlQuery = `
       INSERT INTO subscribers (
-        form_name, voornaam, achternaam, postcode, huisnummer, telefoonnummer, email, reden_aanvraag, opmerking
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+        form_name, voornaam, achternaam, postcode, huisnummer, straat, plaats, 
+        telefoonnummer, email, reden_aanvraag, opmerking
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     `;
     const mysqlValues = [
       "Checkmijnverzekering",
@@ -33,19 +59,19 @@ export async function POST(request) {
       formData.lastName || null,
       formData.postcode || null,
       formData.huisnummer || null,
+      formData.street || null, // <-- NIEUW
+      formData.city || null, // <-- NIEUW
       formData.phone || null,
       formData.email || null,
       formData.wens || null,
-      formData.opmerking || null,
+      formData.opmerking || null, // De originele opmerking zonder link
     ];
 
-    // --- WIJZIGING: Vang het resultaat van de query op ---
     const [result] = await connection.execute(mysqlQuery, mysqlValues);
-    const insertedId = result.insertId; // Dit is de auto-gegenereerde ID
+    const insertedId = result.insertId;
 
     console.log(`Data succesvol opgeslagen in MySQL met ID: ${insertedId}.`);
 
-    // Controleer of er een ID is aangemaakt
     if (!insertedId) {
       throw new Error("Kon geen ID verkrijgen van de database na insert.");
     }
@@ -68,39 +94,38 @@ export async function POST(request) {
       timeZone: "Europe/Amsterdam",
     });
 
-    // --- WIJZIGING: Voeg de 'insertedId' toe aan de data voor de spreadsheet ---
-    // We plaatsen de ID in de derde kolom, zoals in het oorspronkelijke script.
+    // --- WIJZIGING: Vul 'Adres' en 'Woonplaats' in de sheet data ---
     const sheetRowData = [
       formData.wens || "",
       "Checkmijnverzekering.nl",
-      insertedId, // <-- HIER STAAT DE ID NU
-      "",
+      insertedId,
+      "", // Kolom D
       formData.firstName || "",
-      "",
+      "", // Kolom F
       formData.lastName || "",
       formData.phone || "",
       formData.email || "",
-      formData.huisnummer || "",
-      formData.postcode || "",
+      sheetAdres || "", // Adres: straat + huisnr (kolom L) <-- NIEUW
+      formData.postcode || "", // Postcode (kolom K)
+      formData.city || "", // Woonplaats (kolom M) <-- NIEUW
+      "", // Kolom N
+      "", // Kolom O
+      "", // Kolom P
+      "", // Kolom Q
+      "", // Kolom R
+      "", // Kolom S
+      "", // Kolom T
+      "", // Kolom U
+      "", // Kolom V
+      "", // Kolom W
+      "", // Kolom X
+      "", // Kolom Y
+      "", // Kolom Z
+      "", // Kolom AA
+      "", // Kolom AB
       "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      formData.opmerking || "",
-      currentDate,
+      sheetOpmerkingen || "", // De gecombineerde opmerking (kolom AC)
+      currentDate, // Datum (kolom AD)
     ];
 
     await sheets.spreadsheets.values.append({
@@ -134,7 +159,7 @@ export async function POST(request) {
     return Response.json(
       {
         success: false,
-        message: "Er is een fout opgetreden bij het verwerken van uw aanvraag.",
+        message: "Er is een fout opgereden bij het verwerken van uw aanvraag.",
         error:
           process.env.NODE_ENV === "development" ? error.message : undefined,
       },

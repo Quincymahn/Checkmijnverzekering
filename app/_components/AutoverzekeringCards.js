@@ -16,7 +16,7 @@ function AutoverzekeringCards() {
         <div className="absolute bg-[#00af76] rounded-full w-40 h-40 -top-10 -left-10"></div>
         <div className="flex flex-col items-center h-full px-6 py-5 text-center border border-white rounded-2xl backdrop-blur-md bg-gray-400/20 shadow-md-custom">
           <Image
-            src="/img/breakdown.png" // <-- Nieuw relevant icoon
+            src="/img/main-car-icon.png" // <-- Nieuw relevant icoon
             width={60}
             height={60}
             alt="Car icoon"
@@ -28,7 +28,7 @@ function AutoverzekeringCards() {
             alleen wat nodig is voor een juiste vergelijking.
           </p>
           <Link
-            href="#"
+            href="/plan-een-gesprek"
             className="text-[#1b7ced] hover:text-blue-800 transition-all duration-300 group mt-auto"
           >
             Ga er naartoe{" "}
@@ -53,7 +53,7 @@ function AutoverzekeringCards() {
             aanvullende dekking en voorwaarden.
           </p>
           <Link
-            href="#"
+            href="/plan-een-gesprek"
             className="text-[#1b7ced] hover:text-blue-800 transition-all duration-300 group mt-auto"
           >
             Ga er naartoe{" "}
@@ -76,7 +76,7 @@ function AutoverzekeringCards() {
             snel en veilig.
           </p>
           <Link
-            href="#"
+            href="/plan-een-gesprek"
             className="text-[#1b7ced] hover:text-blue-800 transition-all duration-300 group mt-auto"
           >
             Ga er naartoe{" "}

@@ -7,7 +7,7 @@ import { useState } from "react";
 const faqData = [
   {
     question: "Wat verstaat de verzekeraar onder een 'ongeval'?",
-    icon: "/img/alert.png",
+    icon: "/img/warning-icon.png",
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -27,7 +27,7 @@ const faqData = [
   {
     question:
       "Is er een verschil met een arbeidsongeschiktheidsverzekering (AOV)?",
-    icon: "/img/legal.png",
+    icon: "/img/balance.png",
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -46,7 +46,7 @@ const faqData = [
   },
   {
     question: "Zijn ongevallen tijdens het sporten ook gedekt?",
-    icon: "/img/stretching.png", // <-- Nieuw relevant icoon
+    icon: "/img/broken-arm.png", // <-- Nieuw relevant icoon
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -65,7 +65,7 @@ const faqData = [
   },
   {
     question: "Wat is 'dubbele uitkering bij verkeersongevallen'?",
-    icon: "/img/traffic.png", // <-- Nieuw relevant icoon
+    icon: "/img/broken-car-2.png", // <-- Nieuw relevant icoon
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -83,7 +83,7 @@ const faqData = [
   },
   {
     question: "Keert de verzekering ook uit bij kleine ongevallen?",
-    icon: "/img/plaster.png", // <-- Nieuw relevant icoon
+    icon: "/img/medical-logo.png", // <-- Nieuw relevant icoon
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -141,7 +141,7 @@ function OngevallenverzekeringTabbedContent() {
         <div className="p-10">
           <div className="mb-8">{faqData[activeTab].answer}</div>
           <Link
-            href="#"
+            href="/plan-een-gesprek"
             className="group relative inline-block self-start text-lg font-medium
     bg-[#00af76] text-white text-center
     py-1 px-6 rounded-full

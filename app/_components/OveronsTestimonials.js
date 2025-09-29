@@ -61,7 +61,7 @@ function OveronsTestimonials() {
   ];
 
   return (
-    <div className="flex flex-col items-center justify-center mx-auto mt-40 max-w-7xl mb-30">
+    <div className="flex flex-col items-center justify-center mx-auto mt-30 max-w-7xl mb-30">
       <p className="text-2xl font-medium">Wat onze klanten zeggen</p>
       <div className="grid w-full grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-5 gap-y-10 mt-15">
         {testimonialData.map((testimonial, index) => (

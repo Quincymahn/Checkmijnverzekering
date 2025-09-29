@@ -20,7 +20,7 @@ function FietsverzekeringVergelijken() {
             "goudseverzekeringen.png",
             "asr.png",
             "anwb.png",
-            "abnamro.png",
+            "allianz-direct-autoverzekering.svg",
           ].map((logo, index) => (
             <div
               key={index}
@@ -56,7 +56,7 @@ function FietsverzekeringVergelijken() {
           </li>
           <li>
             <b>Bespaar Direct:</b> Onze gebruikers besparen gemiddeld €120 per
-            jaar op hun inboedelverzekering.
+            jaar op hun verzekeringen.
           </li>
         </ul>
         <p className="mt-6 mb-2 text-lg font-medium text-white">

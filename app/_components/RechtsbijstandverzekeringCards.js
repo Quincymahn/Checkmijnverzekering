@@ -31,7 +31,7 @@ function RechtsbijstandverzekeringCards() {
             die u met raad en daad bijstaan.
           </p>
           <Link
-            href="#"
+            href="/plan-een-gesprek"
             className="text-[#1b7ced] hover:text-blue-800 transition-all duration-300 group mt-auto"
           >
             Ga er naartoe{" "}
@@ -42,7 +42,7 @@ function RechtsbijstandverzekeringCards() {
         </div>
         <div className="flex flex-col items-center h-full px-6 py-5 text-center border border-white rounded-2xl backdrop-blur-md bg-gray-400/20 shadow-md-custom">
           <Image
-            src="/img/pre-built-module.png"
+            src="/img/dekking-op-maat-icon.png"
             width={60}
             height={60}
             alt="Modulaire blokken icoon"
@@ -54,7 +54,7 @@ function RechtsbijstandverzekeringCards() {
             verzekeren. Zo betaalt u nooit voor iets wat u niet nodig heeft.
           </p>
           <Link
-            href="#"
+            href="/plan-een-gesprek"
             className="text-[#1b7ced] hover:text-blue-800 transition-all duration-300 group mt-auto"
           >
             Ga er naartoe{" "}
@@ -65,7 +65,7 @@ function RechtsbijstandverzekeringCards() {
         </div>
         <div className="flex flex-col items-center h-full px-6 py-5 text-center border border-white rounded-2xl backdrop-blur-md bg-gray-400/20 shadow-md-custom">
           <Image
-            src="/img/affordable.png" // <-- Nieuw relevant icoon
+            src="/img/jurist-main-icon.png" // <-- Nieuw relevant icoon
             width={60}
             height={60}
             alt="Kosten besparen icoon"
@@ -77,7 +77,7 @@ function RechtsbijstandverzekeringCards() {
             proceskosten worden door de verzekeraar betaald.
           </p>
           <Link
-            href="#"
+            href="/plan-een-gesprek"
             className="text-[#1b7ced] hover:text-blue-800 transition-all duration-300 group mt-auto"
           >
             Ga er naartoe{" "}

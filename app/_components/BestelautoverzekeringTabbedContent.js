@@ -7,7 +7,7 @@ import { useState } from "react";
 const faqData = [
   {
     question: "Wat is het verschil tussen zakelijk en particulier gebruik?",
-    icon: "/img/briefcase.png", // <-- Nieuw relevant icoon
+    icon: "/img/koffer-icon.png", // <-- Nieuw relevant icoon
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -28,7 +28,7 @@ const faqData = [
   },
   {
     question: "Is mijn lading of gereedschap meeverzekerd?",
-    icon: "/img/tool-box.png", // <-- Nieuw relevant icoon
+    icon: "/img/toolbox-icon.png", // <-- Nieuw relevant icoon
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -46,7 +46,7 @@ const faqData = [
   },
   {
     question: "Wat is het verschil tussen WA, Beperkt Casco en Allrisk?",
-    icon: "/img/delivery-van.png",
+    icon: "/img/bestelbus-icon.png",
     answer: (
       <>
         <ul className="space-y-2 text-gray-600 list-disc list-inside">
@@ -69,7 +69,7 @@ const faqData = [
   },
   {
     question: "Kan ik de btw op de premie verrekenen?",
-    icon: "/img/compliance.png", // <-- Nieuw relevant icoon
+    icon: "/img/contract-icon.png", // <-- Nieuw relevant icoon
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -87,7 +87,7 @@ const faqData = [
   },
   {
     question: "Kan ik mijn schadevrije jaren van mijn personenauto gebruiken?",
-    icon: "/img/bridge.png",
+    icon: "/img/overlijdenrisico-verzekering-icon.png",
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -141,7 +141,7 @@ function BestelautoverzekeringTabbedContent() {
         <div className="p-10">
           <div className="mb-8">{faqData[activeTab].answer}</div>
           <Link
-            href="#"
+            href="/plan-een-gesprek"
             className="group relative inline-block self-start text-lg font-medium
     bg-[#00af76] text-white text-center
     py-1 px-6 rounded-full

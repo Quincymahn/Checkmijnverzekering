@@ -16,7 +16,7 @@ function BestelautoverzekeringCards() {
         <div className="absolute bg-[#00af76] rounded-full w-40 h-40 -top-10 -left-10"></div>
         <div className="flex flex-col items-center h-full px-6 py-5 text-center border border-white rounded-2xl backdrop-blur-md bg-gray-400/20 shadow-md-custom">
           <Image
-            src="/img/delivery-van.png" // <-- Nieuw relevant icoon
+            src="/img/bestelbus-main.png" // <-- Nieuw relevant icoon
             width={60}
             height={60}
             alt="Bestelbus icoon"
@@ -28,7 +28,7 @@ function BestelautoverzekeringCards() {
             bedrijfsgegevens op voor een premie op maat.
           </p>
           <Link
-            href="#"
+            href="/plan-een-gesprek"
             className="text-[#1b7ced] hover:text-blue-800 transition-all duration-300 group mt-auto"
           >
             Ga er naartoe{" "}
@@ -51,7 +51,7 @@ function BestelautoverzekeringCards() {
             voor het verzekeren van uw lading of gereedschap.
           </p>
           <Link
-            href="#"
+            href="/plan-een-gesprek"
             className="text-[#1b7ced] hover:text-blue-800 transition-all duration-300 group mt-auto"
           >
             Ga er naartoe{" "}
@@ -74,7 +74,7 @@ function BestelautoverzekeringCards() {
             een voorlopige dekking, zodat uw werk niet stilvalt.
           </p>
           <Link
-            href="#"
+            href="/plan-een-gesprek"
             className="text-[#1b7ced] hover:text-blue-800 transition-all duration-300 group mt-auto"
           >
             Ga er naartoe{" "}

@@ -7,7 +7,7 @@ import { useState } from "react";
 const faqData = [
   {
     question: "Is een WA-verzekering voor mijn boot verplicht?",
-    icon: "/img/file.png",
+    icon: "/img/contract-icon.png",
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -27,7 +27,7 @@ const faqData = [
   },
   {
     question: "Wat is mijn vaargebied en kan ik dit uitbreiden?",
-    icon: "/img/location.png", // <-- Nieuw relevant icoon
+    icon: "/img/location-icon.png", // <-- Nieuw relevant icoon
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -47,7 +47,7 @@ const faqData = [
   },
   {
     question: "Is mijn buitenboordmotor verzekerd tegen diefstal?",
-    icon: "/img/propeller.png", // <-- Nieuw relevant icoon
+    icon: "/img/propellor-icon.png", // <-- Nieuw relevant icoon
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -65,7 +65,7 @@ const faqData = [
   },
   {
     question: "Dekt de verzekering ook hulp bij pech op het water?",
-    icon: "/img/alert.png",
+    icon: "/img/warning-icon.png",
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -83,7 +83,7 @@ const faqData = [
   },
   {
     question: "Wat als ik deelneem aan wedstrijden?",
-    icon: "/img/boat.png", // <-- Nieuw relevant icoon
+    icon: "/img/zeilboot-verzekering-icon.png", // <-- Nieuw relevant icoon
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -138,7 +138,7 @@ function PleziervaartuigverzekeringTabbedContent() {
         <div className="p-10">
           <div className="mb-8">{faqData[activeTab].answer}</div>
           <Link
-            href="#"
+            href="/plan-een-gesprek"
             className="group relative inline-block self-start text-lg font-medium
     bg-[#00af76] text-white text-center
     py-1 px-6 rounded-full

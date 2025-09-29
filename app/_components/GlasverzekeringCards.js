@@ -19,7 +19,7 @@ function GlasverzekeringCards() {
         <div className="absolute bg-[#00af76] rounded-full w-40 h-40 -top-10 -left-10"></div>
         <div className="flex flex-col items-center h-full px-6 py-5 text-center border border-white rounded-2xl backdrop-blur-md bg-gray-400/20 shadow-md-custom">
           <Image
-            src="/img/window.png" // <-- Nieuw relevant icoon
+            src="/img/raam-icon.png" // <-- Nieuw relevant icoon
             width={60}
             height={60}
             alt="Raam icoon"
@@ -31,7 +31,7 @@ function GlasverzekeringCards() {
             ook glas in serres, balkonafscheidingen en douchecabines.
           </p>
           <Link
-            href="#"
+            href="/plan-een-gesprek"
             className="text-[#1b7ced] hover:text-blue-800 transition-all duration-300 group mt-auto"
           >
             Ga er naartoe{" "}
@@ -42,7 +42,7 @@ function GlasverzekeringCards() {
         </div>
         <div className="flex flex-col items-center h-full px-6 py-5 text-center border border-white rounded-2xl backdrop-blur-md bg-gray-400/20 shadow-md-custom">
           <Image
-            src="/img/settings.png"
+            src="/img/snelle-service-icon.png"
             width={60}
             height={60}
             alt="Gereedschap icoon"
@@ -54,7 +54,7 @@ function GlasverzekeringCards() {
             glaszetter in om de schade snel en vakkundig te herstellen.
           </p>
           <Link
-            href="#"
+            href="/plan-een-gesprek"
             className="text-[#1b7ced] hover:text-blue-800 transition-all duration-300 group mt-auto"
           >
             Ga er naartoe{" "}
@@ -65,7 +65,7 @@ function GlasverzekeringCards() {
         </div>
         <div className="flex flex-col items-center h-full px-6 py-5 text-center border border-white rounded-2xl backdrop-blur-md bg-gray-400/20 shadow-md-custom">
           <Image
-            src="/img/deduction.png"
+            src="/img/eigen-risico-icon.png"
             width={60}
             height={60}
             alt="Geen eigen risico icoon"
@@ -77,7 +77,7 @@ function GlasverzekeringCards() {
             kosten voor het vervangen van de ruit worden volledig vergoed.
           </p>
           <Link
-            href="#"
+            href="/plan-een-gesprek"
             className="text-[#1b7ced] hover:text-blue-800 transition-all duration-300 group mt-auto"
           >
             Ga er naartoe{" "}

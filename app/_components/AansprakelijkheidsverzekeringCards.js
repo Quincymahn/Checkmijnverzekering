@@ -16,7 +16,7 @@ function AansprakelijkheidsverzekeringCards() {
         <div className="absolute bg-[#00af76] rounded-full w-40 h-40 -top-10 -left-10"></div>
         <div className="flex flex-col items-center h-full px-6 py-5 text-center border border-white rounded-2xl backdrop-blur-md bg-gray-400/20 shadow-md-custom">
           <Image
-            src="/img/family.webp" // <-- Nieuw relevant icoon
+            src="/img/modern-family-icon.png" // <-- Nieuw relevant icoon
             width={60}
             height={60}
             alt="family icoon"
@@ -28,7 +28,7 @@ function AansprakelijkheidsverzekeringCards() {
             kinderen en zelfs uw huisdieren.
           </p>
           <Link
-            href="#"
+            href="/plan-een-gesprek"
             className="text-[#1b7ced] hover:text-blue-800 transition-all duration-300 group mt-auto"
           >
             Ga er naartoe{" "}
@@ -39,7 +39,7 @@ function AansprakelijkheidsverzekeringCards() {
         </div>
         <div className="flex flex-col items-center h-full px-6 py-5 text-center border border-white rounded-2xl backdrop-blur-md bg-gray-400/20 shadow-md-custom">
           <Image
-            src="/img/world.png"
+            src="/img/wereld-bol-icon.png"
             width={60}
             height={60}
             alt="Wereldbol icoon"
@@ -51,7 +51,7 @@ function AansprakelijkheidsverzekeringCards() {
             wereld, u bent verzekerd voor schade aan anderen.
           </p>
           <Link
-            href="#"
+            href="/plan-een-gesprek"
             className="text-[#1b7ced] hover:text-blue-800 transition-all duration-300 group mt-auto"
           >
             Ga er naartoe{" "}
@@ -62,7 +62,7 @@ function AansprakelijkheidsverzekeringCards() {
         </div>
         <div className="flex flex-col items-center h-full px-6 py-5 text-center border border-white rounded-2xl backdrop-blur-md bg-gray-400/20 shadow-md-custom">
           <Image
-            src="/img/economic-policy.png"
+            src="/img/modern-contract-icon.png"
             width={60}
             height={60}
             alt="Financieel schild icoon"
@@ -74,7 +74,7 @@ function AansprakelijkheidsverzekeringCards() {
             bent tegen catastrofale claims na bijvoorbeeld letselschade.
           </p>
           <Link
-            href="#"
+            href="/plan-een-gesprek"
             className="text-[#1b7ced] hover:text-blue-800 transition-all duration-300 group mt-auto"
           >
             Ga er naartoe{" "}

@@ -7,7 +7,7 @@ import { useState } from "react";
 const faqData = [
   {
     question: "Is een aansprakelijkheidsverzekering (AVP) verplicht?",
-    icon: "/img/file.png", // <-- Nieuw relevant icoon
+    icon: "/img/contract-icon.png", // <-- Nieuw relevant icoon
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -22,7 +22,7 @@ const faqData = [
   },
   {
     question: "Wie zijn er meeverzekerd op een gezinspolis?",
-    icon: "/img/family.webp",
+    icon: "/img/familie-icon.png",
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -47,7 +47,7 @@ const faqData = [
   },
   {
     question: "Wat is 'schade tijdens een vriendendienst'?",
-    icon: "/img/hands.png", // <-- Nieuw relevant icoon
+    icon: "/img/shaking-hands-icon.png", // <-- Nieuw relevant icoon
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -67,7 +67,7 @@ const faqData = [
   },
   {
     question: "Dekt de verzekering ook schade veroorzaakt op mijn werk?",
-    icon: "/img/briefcase.png",
+    icon: "/img/koffer-icon.png",
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -85,7 +85,7 @@ const faqData = [
   },
   {
     question: "Hoe hoog moet mijn verzekerde bedrag zijn?",
-    icon: "/img/money-bag.png", // <-- Nieuw relevant icoon
+    icon: "/img/money-chart.png", // <-- Nieuw relevant icoon
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -137,7 +137,7 @@ function AansprakelijkheidsverzekeringTabbedContent() {
         <div className="p-10">
           <div className="mb-8">{faqData[activeTab].answer}</div>
           <Link
-            href="#"
+            href="/plan-een-gesprek"
             className="group relative inline-block self-start text-lg font-medium
     bg-[#00af76] text-white text-center
     py-1 px-6 rounded-full

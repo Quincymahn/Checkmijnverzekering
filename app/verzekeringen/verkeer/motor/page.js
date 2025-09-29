@@ -7,8 +7,8 @@ import MotorverzekeringVergelijken from "../../../_components/MotorverzekeringVe
 import MotorverzekeringWhyUs from "../../../_components/MotorverzekeringWhyUs";
 import { getSortedPostsData } from "../../../_lib/posts";
 
-function page() {
-  const allPosts = getSortedPostsData();
+async function page() {
+  const allPosts = await getSortedPostsData();
 
   return (
     <div className="w-full overflow-hidden">

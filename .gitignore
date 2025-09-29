@@ -30,12 +30,21 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
-.env*
-
 # vercel
 .vercel
 
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# -------------------------------------------------------------------
+# Environment-Specifieke Configuratiebestanden
+# Deze bestanden worden handmatig beheerd op elke server (test, live)
+# en horen NIET in Git te staan.
+# -------------------------------------------------------------------
+.env*
+next.config.js
+next.config.mjs
+Dockerfile*
+docker-compose*.yml
+# -------------------------------------------------------------------

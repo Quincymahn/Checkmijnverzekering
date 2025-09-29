@@ -18,7 +18,7 @@ function ReisverzekeringCards() {
         <div className="absolute bg-[#00af76] rounded-full w-40 h-40 -top-10 -left-10"></div>
         <div className="flex flex-col items-center h-full px-6 py-5 text-center border border-white rounded-2xl backdrop-blur-md bg-gray-400/20 shadow-md-custom">
           <Image
-            src="/img/assistance.png" // <-- Nieuw relevant icoon
+            src="/img/medical-heart.png" // <-- Nieuw relevant icoon
             width={60}
             height={60}
             alt="Medische hulp icoon"
@@ -30,7 +30,7 @@ function ReisverzekeringCards() {
             zorgverzekering niet (volledig) vergoedt.
           </p>
           <Link
-            href="#"
+            href="/plan-een-gesprek"
             className="text-[#1b7ced] hover:text-blue-800 transition-all duration-300 group mt-auto"
           >
             Ga er naartoe{" "}
@@ -41,7 +41,7 @@ function ReisverzekeringCards() {
         </div>
         <div className="flex flex-col items-center h-full px-6 py-5 text-center border border-white rounded-2xl backdrop-blur-md bg-gray-400/20 shadow-md-custom">
           <Image
-            src="/img/luggage.png" // <-- Nieuw relevant icoon
+            src="/img/koffers-main-icon.png" // <-- Nieuw relevant icoon
             width={60}
             height={60}
             alt="Bagage icoon"
@@ -53,7 +53,7 @@ function ReisverzekeringCards() {
             camera, telefoon en andere waardevolle spullen.
           </p>
           <Link
-            href="#"
+            href="/plan-een-gesprek"
             className="text-[#1b7ced] hover:text-blue-800 transition-all duration-300 group mt-auto"
           >
             Ga er naartoe{" "}
@@ -64,7 +64,7 @@ function ReisverzekeringCards() {
         </div>
         <div className="flex flex-col items-center h-full px-6 py-5 text-center border border-white rounded-2xl backdrop-blur-md bg-gray-400/20 shadow-md-custom">
           <Image
-            src="/img/block.png" // <-- Nieuw relevant icoon
+            src="/img/annulering-van-de-kalender.png" // <-- Nieuw relevant icoon
             width={60}
             height={60}
             alt="Annulering icoon"
@@ -76,7 +76,7 @@ function ReisverzekeringCards() {
             of afbreken door een verzekerde gebeurtenis.
           </p>
           <Link
-            href="#"
+            href="/plan-een-gesprek"
             className="text-[#1b7ced] hover:text-blue-800 transition-all duration-300 group mt-auto"
           >
             Ga er naartoe{" "}

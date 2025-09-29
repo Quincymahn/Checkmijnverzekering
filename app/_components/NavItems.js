@@ -1,13 +1,28 @@
 // NavItems.jsx - Desktop navigation with responsive dropdown
 "use client";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, ChevronRight } from "lucide-react";
 
 function NavItems() {
   const [isVerzekeringenOpen, setIsVerzekeringenOpen] = useState(false);
   const [openSubMenu, setOpenSubMenu] = useState(null);
+  const navRef = useRef(null);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (navRef.current && !navRef.current.contains(event.target)) {
+        setIsVerzekeringenOpen(false);
+        setOpenSubMenu(null);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [navRef]);
 
   const verzekeringenItems = [
     {
@@ -73,8 +88,18 @@ function NavItems() {
     visible: { opacity: 1, x: 0, transition: { duration: 0.2 } },
   };
 
+  const handleVerzekeringenToggle = (e) => {
+    // Stop de link-navigatie als we alleen de dropdown willen openen
+    e.preventDefault();
+    e.stopPropagation();
+    setIsVerzekeringenOpen(!isVerzekeringenOpen);
+  };
+
   return (
-    <div className="flex items-center justify-center space-x-4 text-sm text-white lg:space-x-8 lg:text-base">
+    <div
+      className="flex items-center justify-center space-x-4 text-sm text-white lg:space-x-8 lg:text-base"
+      ref={navRef}
+    >
       <Link href="/">
         <span className="transition-colors hover:text-gray-300">Home</span>
       </Link>
@@ -84,22 +109,31 @@ function NavItems() {
         </span>
       </Link>
 
-      <motion.div
+      <div
         className="relative"
-        onHoverStart={() => setIsVerzekeringenOpen(true)}
-        onHoverEnd={() => setIsVerzekeringenOpen(false)}
+        onMouseEnter={() =>
+          window.innerWidth >= 1024 && setIsVerzekeringenOpen(true)
+        }
+        onMouseLeave={() =>
+          window.innerWidth >= 1024 && setIsVerzekeringenOpen(false)
+        }
       >
-        <Link href="/verzekeringen">
-          <span className="inline-flex items-center transition-colors cursor-pointer hover:text-gray-300">
-            Verzekeringen
-            <motion.div
-              animate={{ rotate: isVerzekeringenOpen ? 180 : 0 }}
-              transition={{ duration: 0.3 }}
-            >
-              <ChevronDown className="w-4 h-4 ml-1 lg:w-5 lg:h-5" />
-            </motion.div>
-          </span>
-        </Link>
+        <div className="flex items-center">
+          <Link href="/verzekeringen">
+            <span className="transition-colors cursor-pointer hover:text-gray-300">
+              Verzekeringen
+            </span>
+          </Link>
+          {/* Dit is het aparte klikbare gebied voor de dropdown */}
+          <motion.div
+            onClick={handleVerzekeringenToggle}
+            className="p-1 cursor-pointer"
+            animate={{ rotate: isVerzekeringenOpen ? 180 : 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <ChevronDown className="w-4 h-4 ml-1 lg:w-5 lg:h-5" />
+          </motion.div>
+        </div>
         <AnimatePresence>
           {isVerzekeringenOpen && (
             <motion.div
@@ -111,22 +145,34 @@ function NavItems() {
             >
               <div className="py-1">
                 {verzekeringenItems.map((item) => (
-                  <motion.div
+                  <div
                     key={item.name}
                     className="relative"
-                    onHoverStart={() => setOpenSubMenu(item.name)}
-                    onHoverEnd={() => setOpenSubMenu(null)}
+                    onMouseEnter={() =>
+                      window.innerWidth >= 1024 && setOpenSubMenu(item.name)
+                    }
+                    onMouseLeave={() =>
+                      window.innerWidth >= 1024 && setOpenSubMenu(null)
+                    }
                   >
-                    <Link href={item.href}>
-                      <span className="flex items-center justify-between w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                        {item.name}
-                        <ChevronRight className="w-4 h-4" />
-                      </span>
-                    </Link>
+                    <div className="flex items-center justify-between w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                      <Link href={item.href}>
+                        <span className="flex-grow">{item.name}</span>
+                      </Link>
+                      <ChevronRight
+                        className="w-4 h-4 ml-2 cursor-pointer shrink-0"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setOpenSubMenu(
+                            openSubMenu === item.name ? null : item.name
+                          );
+                        }}
+                      />
+                    </div>
                     <AnimatePresence>
                       {openSubMenu === item.name && (
                         <motion.div
-                          className="absolute left-full top-0 mt-[-1px] ml-1 w-48 lg:w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
+                          className="absolute left-full top-0 mt-[-1px] ml-1 w-48 lg:w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 lg:block"
                           initial="hidden"
                           animate="visible"
                           exit="hidden"
@@ -144,13 +190,13 @@ function NavItems() {
                         </motion.div>
                       )}
                     </AnimatePresence>
-                  </motion.div>
+                  </div>
                 ))}
               </div>
             </motion.div>
           )}
         </AnimatePresence>
-      </motion.div>
+      </div>
 
       <Link href="/nieuws">
         <span className="transition-colors hover:text-gray-300">Nieuws</span>

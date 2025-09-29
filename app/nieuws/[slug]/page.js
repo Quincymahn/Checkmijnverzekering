@@ -1,23 +1,23 @@
-// app/nieuws/[slug]/page.js
-
+import PostMain from "../../_components/PostMain";
 import PostText from "../../_components/PostText";
 import { getPostData, getSortedPostsData } from "../../_lib/posts";
-import PostMain from "../../_components/PostMain";
 
-// We gaan terug naar de meest simpele vorm
 export default async function Page({ params }) {
-  // We halen de slug hier expliciet op
   const postData = await getPostData(params.slug);
+  const allPosts = await getSortedPostsData();
 
-  const allPosts = getSortedPostsData();
+  // Als de post niet gevonden wordt, toon een 404-pagina (Next.js doet dit automatisch)
+  if (!postData) {
+    return null;
+  }
 
   return (
     <div>
       <PostMain post={postData} />
       <PostText
+        contentHtml={postData.contentHtml}
         currentPost={postData}
         allPosts={allPosts}
-        contentHtml={postData.contentHtml}
       />
     </div>
   );

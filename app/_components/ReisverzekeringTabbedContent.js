@@ -8,7 +8,7 @@ const faqData = [
   {
     question:
       "Wat is het verschil tussen een kortlopende en doorlopende reisverzekering?",
-    icon: "/img/calendar.png",
+    icon: "/img/plane.png",
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -28,7 +28,7 @@ const faqData = [
   {
     question:
       "Dekt mijn Nederlandse zorgverzekering niet alle medische kosten in het buitenland?",
-    icon: "/img/assistance.png",
+    icon: "/img/medical-logo.png",
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -48,7 +48,7 @@ const faqData = [
   },
   {
     question: "Wanneer moet ik een annuleringsverzekering afsluiten?",
-    icon: "/img/block.png",
+    icon: "/img/warning-icon.png",
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -88,7 +88,7 @@ const faqData = [
   {
     question:
       "Wat moet ik doen bij diefstal of een noodgeval in het buitenland?",
-    icon: "/img/phone-call.png",
+    icon: "/img/phone-icon.png",
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -145,7 +145,7 @@ function ReisverzekeringTabbedContent() {
         <div className="p-10">
           <div className="mb-8">{faqData[activeTab].answer}</div>
           <Link
-            href="#"
+            href="/plan-een-gesprek"
             className="group relative inline-block self-start text-lg font-medium
     bg-[#00af76] text-white text-center
     py-1 px-6 rounded-full

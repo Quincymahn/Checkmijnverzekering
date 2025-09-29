@@ -7,8 +7,8 @@ import BestelautoverzekeringVergelijken from "../../../_components/Bestelautover
 import BestelautoverzekeringWhyUs from "../../../_components/BestelautoverzekeringWhyUs";
 import { getSortedPostsData } from "../../../_lib/posts";
 
-function page() {
-  const allPosts = getSortedPostsData();
+async function page() {
+  const allPosts = await getSortedPostsData();
 
   return (
     <div className="w-full overflow-hidden">

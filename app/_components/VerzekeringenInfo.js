@@ -3,9 +3,9 @@ import Link from "next/link";
 
 function VerzekeringenInfo() {
   return (
-    <div className="flex flex-col items-center justify-center max-w-5xl mx-auto py-30">
-      <div className="grid grid-cols-2 gap-x-20">
-        <div className="relative w-full h-full">
+    <div className="flex flex-col items-center justify-center max-w-5xl px-4 mx-auto py-30">
+      <div className="grid grid-cols-1 gap-20 lg:grid-cols-2">
+        <div className="relative w-full h-full min-h-[500px] lg:block hidden lg:min-h-0">
           {/* SVG 1: De solide vulling (blijft ongewijzigd) */}
           <Image
             src="/img/istockphoto-1808087645-612x612-removebg-preview.png"
@@ -233,8 +233,8 @@ function VerzekeringenInfo() {
           </div>
         </div>
 
-        <div className="space-y-5 text-gray-600">
-          <p className="text-3xl font-medium">
+        <div className="space-y-5 text-center text-gray-600 lg:text-left">
+          <p className="text-3xl font-medium ">
             Goed verzekerd, hoe <br /> werkt dat eigenlijk
           </p>
           <p>
@@ -256,7 +256,7 @@ function VerzekeringenInfo() {
             vertrouwen de juiste beslissing voor jouw situatie te nemen.
           </p>
           <Link
-            href="#"
+            href="/plan-een-gesprek"
             className="bg-[#00af76] text-white rounded-full px-8 py-2"
           >
             Plan een gesprek

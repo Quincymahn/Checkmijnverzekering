@@ -51,7 +51,7 @@ function RechtsbijstandverzekeringList() {
         </div>
       </div>
       <Image
-        src="/img/blonde-woman-having-conversation-with-work-colleague.jpg" // <-- Nieuwe relevante afbeelding
+        src="/img/business-partners-working-office.jpg" // <-- Nieuwe relevante afbeelding
         width={300}
         height={600}
         alt="Financieel adviseur geeft uitleg over documenten"

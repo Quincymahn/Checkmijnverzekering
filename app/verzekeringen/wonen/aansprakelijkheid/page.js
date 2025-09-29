@@ -7,8 +7,8 @@ import AansprakelijkheidsverzekeringVergelijken from "../../../_components/Aansp
 import AansprakelijkheidsverzekeringWhyUs from "../../../_components/AansprakelijkheidsverzekeringWhyUs";
 import { getSortedPostsData } from "../../../_lib/posts";
 
-function page() {
-  const allPosts = getSortedPostsData();
+async function page() {
+  const allPosts = await getSortedPostsData();
 
   return (
     <div className="w-full overflow-hidden">

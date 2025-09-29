@@ -1,51 +1,104 @@
-import fs from "fs";
-import path from "path";
-import matter from "gray-matter";
+// app/_lib/posts.js
+
 import { remark } from "remark";
 import html from "remark-html";
+import axios from "axios";
 
-const postsDirectory = path.join(process.cwd(), "_posts");
+const STRAPI_INTERNAL_URL = process.env.STRAPI_API_URL_INTERNAL; // bv. http://strapi:1337
+const STRAPI_PUBLIC_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL; // zorg dat deze exact overeenkomt met je .env
 
-export async function getPostData(slug) {
-  const fullPath = path.join(postsDirectory, `${slug}.md`);
-  const fileContents = fs.readFileSync(fullPath, "utf8");
+const formatPostData = (strapiPost) => {
+  if (!strapiPost) return null;
 
-  // Gebruik gray-matter om de post metadata te parsen
-  const matterResult = matter(fileContents);
+  // HANDLE both shapes:
+  // 1) new flattened shape: { id, title, slug, content, coverImage: { url, ... } }
+  // 2) classic Strapi v4 shape: { id, attributes: { title, slug, content, coverImage: { data: { attributes: { url }}}}}
+  const source = strapiPost.attributes ? strapiPost.attributes : strapiPost;
 
-  // Gebruik remark om markdown naar HTML om te zetten
-  const processedContent = await remark()
-    .use(html)
-    .process(matterResult.content);
-  const contentHtml = processedContent.toString();
+  // Get cover image url from either shape
+  const coverImageUrl =
+    // case v4-style: attributes.coverImage?.data?.attributes?.url
+    source.coverImage?.data?.attributes?.url
+      ? `${STRAPI_PUBLIC_URL}${source.coverImage.data.attributes.url}`
+      : // case flattened: coverImage.url
+      source.coverImage?.url
+      ? `${STRAPI_PUBLIC_URL}${source.coverImage.url}`
+      : "/img/default-placeholder.jpg";
 
-  // Combineer de data met de slug en content
   return {
-    slug,
-    contentHtml,
-    ...matterResult.data,
+    id: strapiPost.id ?? source.id,
+    slug: source.slug ?? null,
+    title: source.title ?? null,
+    excerpt: source.excerpt ?? null,
+    content: source.content ?? "",
+    date: source.date ?? null,
+    category: source.category ?? null,
+    coverImage: coverImageUrl,
   };
+};
+
+export async function getSortedPostsData() {
+  try {
+    const response = await axios.get(
+      `${STRAPI_INTERNAL_URL}/api/blog-posts?populate=*&sort=date:desc`
+    );
+
+    // response.data.data is an array in both shapes
+    const allPostsData = (response.data?.data || [])
+      .map(formatPostData)
+      .filter(Boolean);
+
+    return allPostsData;
+  } catch (error) {
+    console.error("Fout bij het ophalen van gesorteerde posts:", error.message);
+    return [];
+  }
 }
 
-export function getSortedPostsData() {
-  const fileNames = fs.readdirSync(postsDirectory);
-  const allPostsData = fileNames.map((fileName) => {
-    const slug = fileName.replace(/\.md$/, "");
-    const fullPath = path.join(postsDirectory, fileName);
-    const fileContents = fs.readFileSync(fullPath, "utf8");
-    const matterResult = matter(fileContents);
+export async function getPostData(slug) {
+  try {
+    const response = await axios.get(
+      `${STRAPI_INTERNAL_URL}/api/blog-posts?filters[slug][$eq]=${encodeURIComponent(
+        slug
+      )}&populate=*`
+    );
+
+    // Debug: laat zien wat Strapi terugstuurt (verwijder later)
+    console.log(
+      "getPostData response:",
+      JSON.stringify(response.data, null, 2)
+    );
+
+    // Pak het eerste resultaat, maar als er meerdere items zijn, probeer exact te matchen op slug
+    const items = response.data?.data || [];
+    let postData = items[0] ?? null;
+
+    if (items.length > 1) {
+      const found = items.find((p) => {
+        const source = p.attributes ? p.attributes : p;
+        // source.slug voor geneste vorm, p.slug voor platte vorm
+        return (
+          (source.slug && source.slug === slug) || (p.slug && p.slug === slug)
+        );
+      });
+      if (found) postData = found;
+    }
+
+    if (!postData) return null;
+
+    const formattedPost = formatPostData(postData);
+
+    const processedContent = await remark()
+      .use(html)
+      .process(formattedPost.content || "");
+    const contentHtml = processedContent.toString();
 
     return {
-      slug,
-      ...matterResult.data,
+      ...formattedPost,
+      contentHtml,
     };
-  });
-
-  return allPostsData.sort((a, b) => {
-    if (a.date < b.date) {
-      return 1;
-    } else {
-      return -1;
-    }
-  });
+  } catch (error) {
+    console.error(`Fout bij het ophalen post "${slug}":`, error.message);
+    return null;
+  }
 }

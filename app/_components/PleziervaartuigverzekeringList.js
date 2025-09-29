@@ -51,7 +51,7 @@ function PleziervaartuigverzekeringList() {
         width={300}
         height={600}
         alt="Zeilboot vaart op open zee met de zeilen gehesen"
-        className="relative z-10 object-cover object-right max-sm:w-full lg:-mr-25 rounded-2xl"
+        className="relative z-10 object-cover max-sm:w-full lg:-mr-25 rounded-2xl"
       />
       <div className="bg-[#00af76] rounded-full w-40 h-40 absolute top-3 right-23 sm:block hidden"></div>
     </div>

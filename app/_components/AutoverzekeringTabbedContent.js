@@ -58,7 +58,7 @@ const faqData = [
   },
   {
     question: "Ben ik direct verzekerd na het aanvragen?",
-    icon: "/img/file.png",
+    icon: "/img/contract-icon.png",
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -79,7 +79,7 @@ const faqData = [
   },
   {
     question: "Welke factoren bepalen de hoogte van mijn premie?",
-    icon: "/img/growth.png",
+    icon: "/img/money-chart.png",
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -117,7 +117,7 @@ const faqData = [
   {
     question:
       "Hoe werkt het overstappen en moet ik mijn oude verzekering zelf opzeggen?",
-    icon: "/img/bridge.png",
+    icon: "/img/overlijdensrisico-verzekering-icon.png",
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -175,7 +175,7 @@ function AutoverzekeringTabbedContent() {
         <div className="p-10">
           <div className="mb-8">{faqData[activeTab].answer}</div>
           <Link
-            href="#"
+            href="/plan-een-gesprek"
             className="group relative inline-block self-start text-lg font-medium
     bg-[#00af76] text-white text-center
     py-1 px-6 rounded-full

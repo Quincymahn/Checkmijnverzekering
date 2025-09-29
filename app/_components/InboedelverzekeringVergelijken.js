@@ -20,7 +20,7 @@ function InboedelverzekeringVergelijken() {
             "goudseverzekeringen.png",
             "asr.png",
             "anwb.png",
-            "abnamro.png",
+            "allianz-direct-autoverzekering.svg",
           ].map((logo, index) => (
             <div
               key={index}

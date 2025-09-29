@@ -19,7 +19,7 @@ function PleziervaartuigverzekeringCards() {
         <div className="absolute bg-[#00af76] rounded-full w-40 h-40 -top-10 -left-10"></div>
         <div className="flex flex-col items-center h-full px-6 py-5 text-center border border-white rounded-2xl backdrop-blur-md bg-gray-400/20 shadow-md-custom">
           <Image
-            src="/img/anchor.png" // <-- Nieuw relevant icoon
+            src="/img/anker-main-icon.png" // <-- Nieuw relevant icoon
             width={60}
             height={60}
             alt="Anker icoon"
@@ -31,7 +31,7 @@ function PleziervaartuigverzekeringCards() {
             beschermt u tegen claims, en is in veel havens verplicht.
           </p>
           <Link
-            href="#"
+            href="/plan-een-gesprek"
             className="text-[#1b7ced] hover:text-blue-800 transition-all duration-300 group mt-auto"
           >
             Ga er naartoe{" "}
@@ -42,7 +42,7 @@ function PleziervaartuigverzekeringCards() {
         </div>
         <div className="flex flex-col items-center h-full px-6 py-5 text-center border border-white rounded-2xl backdrop-blur-md bg-gray-400/20 shadow-md-custom">
           <Image
-            src="/img/speed-boat.png" // <-- Nieuw relevant icoon
+            src="/img/speedboot-main-icon.png" // <-- Nieuw relevant icoon
             width={60}
             height={60}
             alt="Boot met schade icoon"
@@ -54,7 +54,7 @@ function PleziervaartuigverzekeringCards() {
             aanvaring, brand, vandalisme en diefstal.
           </p>
           <Link
-            href="#"
+            href="/plan-een-gesprek"
             className="text-[#1b7ced] hover:text-blue-800 transition-all duration-300 group mt-auto"
           >
             Ga er naartoe{" "}
@@ -65,7 +65,7 @@ function PleziervaartuigverzekeringCards() {
         </div>
         <div className="flex flex-col items-center h-full px-6 py-5 text-center border border-white rounded-2xl backdrop-blur-md bg-gray-400/20 shadow-md-custom">
           <Image
-            src="/img/propeller.png" // <-- Nieuw relevant icoon
+            src="/img/propeller-main-icon.png" // <-- Nieuw relevant icoon
             width={60}
             height={60}
             alt="Trailer icoon"
@@ -77,7 +77,7 @@ function PleziervaartuigverzekeringCards() {
             Deze kunt u specifiek meeverzekeren.
           </p>
           <Link
-            href="#"
+            href="/plan-een-gesprek"
             className="text-[#1b7ced] hover:text-blue-800 transition-all duration-300 group mt-auto"
           >
             Ga er naartoe{" "}
