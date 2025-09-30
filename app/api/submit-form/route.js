@@ -21,14 +21,29 @@ export async function POST(request) {
     // ==========================================================
 
     // 1. Maak een aparte opmerking voor de spreadsheet (incl. polis link)
-    const { polisFileUrl, opmerking } = formData;
-    let sheetOpmerkingen = opmerking || "";
-    if (polisFileUrl) {
-      const linkText = `Polisblad: ${polisFileUrl}`;
-      sheetOpmerkingen = sheetOpmerkingen
-        ? `${sheetOpmerkingen} | ${linkText}`
-        : linkText;
+    // Regels:
+    // - 'wens', 'opmerking' en 'polisFileUrl' worden allemaal in het opmerkingen veld van de spreadsheet geplaatst
+    // - Ze komen er onafhankelijk van elkaar in, als ze aanwezig zijn.
+    const { polisFileUrl, wens, opmerking } = formData;
+
+    const parts = [];
+
+    // 'Wens' wordt toegevoegd als het aanwezig is
+    if (wens) {
+      parts.push(`Wens: ${wens}`);
     }
+
+    // Als er een vrije opmerking is, voeg die toe
+    if (opmerking) {
+      parts.push(`Opmerking: ${opmerking}`);
+    }
+
+    // Als er een polisbestand-url is, voeg die toe met label
+    if (polisFileUrl) {
+      parts.push(`Polisblad: ${polisFileUrl}`);
+    }
+
+    const sheetOpmerkingen = parts.length > 0 ? parts.join(" | ") : "";
 
     // 2. Maak een gecombineerd adres voor de spreadsheet
     const sheetAdres = [
@@ -46,7 +61,9 @@ export async function POST(request) {
     console.log("Poging tot verbinden met MySQL database...");
     connection = await mysql.createConnection(dbConfig);
 
-    // --- WIJZIGING: Voeg 'straat' en 'plaats' toe aan de query ---
+    // --- WIJZIGING: 'reden_aanvraag' wordt nu 'null' of een lege string, afhankelijk van hoe je het wilt opslaan
+    // De 'wens' wordt niet meer direct in de MySQL 'reden_aanvraag' kolom opgeslagen,
+    // maar alleen in de Google Sheet via 'sheetOpmerkingen'.
     const mysqlQuery = `
       INSERT INTO subscribers (
         form_name, voornaam, achternaam, postcode, huisnummer, straat, plaats, 
@@ -59,12 +76,12 @@ export async function POST(request) {
       formData.lastName || null,
       formData.postcode || null,
       formData.huisnummer || null,
-      formData.street || null, // <-- NIEUW
-      formData.city || null, // <-- NIEUW
+      formData.street || null,
+      formData.city || null,
       formData.phone || null,
       formData.email || null,
-      formData.wens || null,
-      formData.opmerking || null, // De originele opmerking zonder link
+      null, // <-- 'reden_aanvraag' (voorheen 'wens') is nu null in MySQL
+      formData.opmerking || null, // De originele opmerking (indien apart opgeslagen in MySQL)
     ];
 
     const [result] = await connection.execute(mysqlQuery, mysqlValues);
@@ -94,9 +111,9 @@ export async function POST(request) {
       timeZone: "Europe/Amsterdam",
     });
 
-    // --- WIJZIGING: Vul 'Adres' en 'Woonplaats' in de sheet data ---
     const sheetRowData = [
-      formData.wens || "",
+      // formData.wens || "", // Deze is nu vervangen door de logica in sheetOpmerkingen
+      "Verzekering",
       "Checkmijnverzekering.nl",
       insertedId,
       "", // Kolom D
@@ -105,9 +122,9 @@ export async function POST(request) {
       formData.lastName || "",
       formData.phone || "",
       formData.email || "",
-      sheetAdres || "", // Adres: straat + huisnr (kolom L) <-- NIEUW
+      sheetAdres || "", // Adres: straat + huisnr (kolom L)
       formData.postcode || "", // Postcode (kolom K)
-      formData.city || "", // Woonplaats (kolom M) <-- NIEUW
+      formData.city || "", // Woonplaats (kolom M)
       "", // Kolom N
       "", // Kolom O
       "", // Kolom P
