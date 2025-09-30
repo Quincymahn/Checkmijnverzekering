@@ -397,7 +397,7 @@ function AfspraakMain() {
             </div>
             <div className="relative flex-1 w-full backdrop-blur-sm rounded-2xl shadow-md-custom">
               <Image
-                src="/img/Generated Image September 15, 2025 - 11_47AM.png"
+                src="/img/Generated-Image-September-15-2025-11_47AM.png"
                 width={1000}
                 height={1000}
                 alt="vector image of happy customers"

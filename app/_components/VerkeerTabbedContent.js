@@ -8,7 +8,7 @@ import { useState } from "react";
 const faqData = [
   {
     question: "Hoe werken schadevrije jaren?",
-    icon: "/img/Generated Image September 23, 2025 - 3_28PM.png", // <-- Icoon aangepast
+    icon: "/img/Generated-Image-September-23-2025-3_28PM.png", // <-- Icoon aangepast
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -22,7 +22,7 @@ const faqData = [
   },
   {
     question: "Wat is het verschil tussen WA, Beperkt Casco en Allrisk?",
-    icon: "/img/Generated Image September 23, 2025 - 3_40PM.png", // <-- Icoon aangepast
+    icon: "/img/Generated-Image-September-23-2025-3_40PM.png", // <-- Icoon aangepast
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -36,7 +36,7 @@ const faqData = [
   },
   {
     question: "Ben ik direct verzekerd na het aanvragen?",
-    icon: "/img/Generated Image September 23, 2025 - 3_50PM.png", // <-- Icoon aangepast
+    icon: "/img/Generated-Image-September-23-2025-3_50PM.png", // <-- Icoon aangepast
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -50,7 +50,7 @@ const faqData = [
   },
   {
     question: "Dekt mijn verzekering ook pechhulp?",
-    icon: "/img/Generated Image September 23, 2025 - 3_38PM.png", // <-- Icoon aangepast
+    icon: "/img/Generated-Image-September-23-2025-3_38PM.png", // <-- Icoon aangepast
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -64,7 +64,7 @@ const faqData = [
   },
   {
     question: "Kan ik mijn verzekering dagelijks opzeggen?",
-    icon: "/img/Generated Image September 23, 2025 - 3_45PM.png", // <-- Icoon aangepast
+    icon: "/img/Generated-Image-September-23-2025-3_45PM.png", // <-- Icoon aangepast
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>

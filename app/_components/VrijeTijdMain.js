@@ -29,7 +29,7 @@ function VrijeTijdMain() {
         <div className="relative">
           <div className="relative flex flex-col items-center w-full h-full px-6 py-8 bg-white rounded-2xl">
             <Image
-              src="/img/Generated Image September 24, 2025 - 11_12AM.png"
+              src="/img/Generated-Image-September-24-2025-11_12AM.png"
               width={170}
               height={170}
               alt="Car icon"
@@ -47,7 +47,7 @@ function VrijeTijdMain() {
         <div className="relative">
           <div className="relative flex flex-col items-center w-full h-full px-6 py-8 bg-white rounded-2xl">
             <Image
-              src="/img/Generated Image September 24, 2025 - 11_13AM.png"
+              src="/img/Generated-Image-September-24-2025-11_13AM.png"
               width={170}
               height={170}
               alt="Car icon"
@@ -62,7 +62,7 @@ function VrijeTijdMain() {
         <div className="relative">
           <div className="relative flex flex-col items-center w-full h-full px-6 py-8 bg-white rounded-2xl">
             <Image
-              src="/img/Generated Image September 24, 2025 - 11_14AM.png"
+              src="/img/Generated-Image-September-24-2025-11_14AM.png"
               width={170}
               height={170}
               alt="Car icon"
@@ -79,7 +79,7 @@ function VrijeTijdMain() {
         <div className="relative">
           <div className="relative flex flex-col items-center w-full h-full px-6 py-8 bg-white rounded-2xl">
             <Image
-              src="/img/Generated Image September 24, 2025 - 11_16AM.png"
+              src="/img/Generated-Image-September-24-2025-11_16AM.png"
               width={170}
               height={170}
               alt="Car icon"

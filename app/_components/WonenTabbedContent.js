@@ -8,7 +8,7 @@ import { useState } from "react";
 const faqData = [
   {
     question: "Ik huur een woning. Welke verzekeringen heb ik dan nodig?",
-    icon: "/img/Generated Image September 23, 2025 - 2_48PM.png", // <-- Icoon aangepast
+    icon: "/img/Generated-Image-September-23-2025-2_48PM.png", // <-- Icoon aangepast
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -23,7 +23,7 @@ const faqData = [
   },
   {
     question: "Wat is het verschil tussen verkoopwaarde en herbouwwaarde?",
-    icon: "/img/Generated Image September 23, 2025 - 2_52PM.png", // <-- Icoon aangepast
+    icon: "/img/Generated-Image-September-23-2025-2_52PM.png", // <-- Icoon aangepast
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -37,7 +37,7 @@ const faqData = [
   },
   {
     question: "Hoe weet ik of ik niet onderverzekerd ben?",
-    icon: "/img/Generated Image September 23, 2025 - 3_06PM.png", // <-- Icoon aangepast
+    icon: "/img/Generated-Image-September-23-2025-3_06PM.png", // <-- Icoon aangepast
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -53,7 +53,7 @@ const faqData = [
   },
   {
     question: "Is schade door mijn huisdier ook verzekerd?",
-    icon: "/img/Generated Image September 23, 2025 - 3_07PM.png", // <-- Icoon aangepast
+    icon: "/img/Generated-Image-September-23-2025-3_07PM.png", // <-- Icoon aangepast
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>
@@ -68,7 +68,7 @@ const faqData = [
   },
   {
     question: "Ik ga verbouwen. Moet ik mijn verzekering aanpassen?",
-    icon: "/img/Generated Image September 23, 2025 - 3_13PM.png", // <-- Icoon aangepast
+    icon: "/img/Generated-Image-September-23-2025-3_13PM.png", // <-- Icoon aangepast
     answer: (
       <div className="space-y-5 text-gray-600">
         <p>

@@ -29,7 +29,7 @@ function RechtEnZekerheidMain() {
         <div className="relative">
           <div className="relative flex flex-col items-center w-full h-full px-6 py-8 bg-white rounded-2xl">
             <Image
-              src="/img/Generated Image September 24, 2025 - 10_33AM.png"
+              src="/img/Generated-Image-September-24-2025-10_33AM.png"
               width={170}
               height={170}
               alt="Car icon"
@@ -46,7 +46,7 @@ function RechtEnZekerheidMain() {
         <div className="relative">
           <div className="relative flex flex-col items-center w-full h-full px-6 py-8 bg-white rounded-2xl">
             <Image
-              src="/img/Generated Image September 24, 2025 - 10_39AM.png"
+              src="/img/Generated-Image-September-24-2025-10_39AM.png"
               width={170}
               height={170}
               alt="Car icon"
@@ -61,7 +61,7 @@ function RechtEnZekerheidMain() {
         <div className="relative">
           <div className="relative flex flex-col items-center w-full h-full px-6 py-8 bg-white rounded-2xl">
             <Image
-              src="/img/Generated Image September 24, 2025 - 10_50AM.png"
+              src="/img/Generated-Image-September-24-2025-10_50AM.png"
               width={170}
               height={170}
               alt="Car icon"
@@ -79,7 +79,7 @@ function RechtEnZekerheidMain() {
         <div className="relative">
           <div className="relative flex flex-col items-center w-full h-full px-6 py-8 bg-white rounded-2xl">
             <Image
-              src="/img/Generated Image September 24, 2025 - 10_42AM.png"
+              src="/img/Generated-Image-September-24-2025-10_42AM.png"
               width={170}
               height={170}
               alt="Car icon"

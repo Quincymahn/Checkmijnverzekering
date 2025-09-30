@@ -44,7 +44,7 @@ function VerzekeringenMain() {
           <div className="absolute inset-0 bg-gray-300 rounded-2xl blur-md"></div>
           <div className="relative flex flex-col items-center w-full h-full px-6 py-8 -mt-2 bg-white rounded-2xl">
             <Image
-              src="/img/Generated Image September 11, 2025 - 10_13AM.png"
+              src="/img/Generated-Image-September-11-2025-10_13AM.png"
               width={170}
               height={170}
               alt="Car icon"
@@ -61,7 +61,7 @@ function VerzekeringenMain() {
           <div className="absolute inset-0 bg-gray-300 rounded-2xl blur-md"></div>
           <div className="relative flex flex-col items-center w-full h-full px-6 py-8 bg-white rounded-2xl md:rotate-2">
             <Image
-              src="/img/Generated Image September 11, 2025 - 10_14AM.png"
+              src="/img/Generated-Image-September-11-2025-10_14AM.png"
               width={170}
               height={170}
               alt="Car icon"

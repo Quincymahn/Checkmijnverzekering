@@ -65,7 +65,7 @@ function RechtEnZekerheidVoordelen() {
           {/* Rechter Kolom: De Illustratie */}
           <div className="flex items-center justify-center overflow-hidden rounded-2xl">
             <Image
-              src="/img/Generated Image September 15, 2025 - 11_47AM.png" // Pad naar uw illustratie
+              src="/img/Generated-Image-September-15-2025-11_47AM.png" // Pad naar uw illustratie
               width={500}
               height={500}
               alt="Diverse mensen die profiteren van goede verzekeringen"
