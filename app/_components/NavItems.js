@@ -5,6 +5,34 @@ import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, ChevronRight } from "lucide-react";
 
+function NavLink({ href, children, className = "", onClick }) {
+  // Modern underline using a separate element that animates with transform: scaleX
+  // Uses Tailwind utility classes (group + group-hover + group-focus-within)
+  return (
+    <Link href={href}>
+      <span
+        role="link"
+        tabIndex={0}
+        onClick={onClick}
+        className={`relative inline-block group px-1 ${className}`}
+      >
+        <span className="font-medium">{children}</span>
+        {/* underline bar */}
+        <span
+          aria-hidden
+          className={
+            "absolute left-0 -bottom-1 h-[2px] w-full transform scale-x-0 origin-left transition-transform duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)] group-hover:scale-x-100 group-focus-within:scale-x-100"
+          }
+          style={{
+            background: "white",
+            willChange: "transform, opacity",
+          }}
+        />
+      </span>
+    </Link>
+  );
+}
+
 function NavItems() {
   const [isVerzekeringenOpen, setIsVerzekeringenOpen] = useState(false);
   const [openSubMenu, setOpenSubMenu] = useState(null);
@@ -100,14 +128,8 @@ function NavItems() {
       className="flex items-center justify-center space-x-4 text-sm text-white lg:space-x-8 lg:text-base"
       ref={navRef}
     >
-      <Link href="/">
-        <span className="transition-colors hover:text-gray-300">Home</span>
-      </Link>
-      <Link href="/over-ons">
-        <span className="transition-colors hover:text-gray-300 text-nowrap">
-          Over ons
-        </span>
-      </Link>
+      <NavLink href="/">Home</NavLink>
+      <NavLink href="/over-ons">Over ons</NavLink>
 
       <div
         className="relative"
@@ -119,11 +141,11 @@ function NavItems() {
         }
       >
         <div className="flex items-center">
-          <Link href="/verzekeringen">
-            <span className="transition-colors cursor-pointer hover:text-gray-300">
-              Verzekeringen
-            </span>
-          </Link>
+          {/* The label is still a NavLink so it gets the same smooth underline */}
+          <NavLink href="/verzekeringen" className="pr-1">
+            Verzekeringen
+          </NavLink>
+
           {/* Dit is het aparte klikbare gebied voor de dropdown */}
           <motion.div
             onClick={handleVerzekeringenToggle}
@@ -198,9 +220,7 @@ function NavItems() {
         </AnimatePresence>
       </div>
 
-      <Link href="/nieuws">
-        <span className="transition-colors hover:text-gray-300">Nieuws</span>
-      </Link>
+      <NavLink href="/nieuws">Nieuws</NavLink>
     </div>
   );
 }
