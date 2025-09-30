@@ -7,6 +7,17 @@ import axios from "axios";
 const STRAPI_INTERNAL_URL = process.env.STRAPI_API_URL_INTERNAL; // bv. http://strapi:1337
 const STRAPI_PUBLIC_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL; // zorg dat deze exact overeenkomt met je .env
 
+const normalizeUrl = (url) => {
+  if (!url) return null;
+  if (url.startsWith("http://") || url.startsWith("https://")) return url;
+  const base = (process.env.NEXT_PUBLIC_STRAPI_API_URL || "").replace(
+    /\/$/,
+    ""
+  );
+  const path = url.startsWith("/") ? url : `/${url}`;
+  return `${base}${path}`;
+};
+
 const formatPostData = (strapiPost) => {
   if (!strapiPost) return null;
 
@@ -16,14 +27,11 @@ const formatPostData = (strapiPost) => {
   const source = strapiPost.attributes ? strapiPost.attributes : strapiPost;
 
   // Get cover image url from either shape
-  const coverImageUrl =
-    // case v4-style: attributes.coverImage?.data?.attributes?.url
-    source.coverImage?.data?.attributes?.url
-      ? `${STRAPI_PUBLIC_URL}${source.coverImage.data.attributes.url}`
-      : // case flattened: coverImage.url
-      source.coverImage?.url
-      ? `${STRAPI_PUBLIC_URL}${source.coverImage.url}`
-      : "/img/default-placeholder.jpg";
+  const coverImageUrl = source.coverImage?.data?.attributes?.url
+    ? normalizeUrl(source.coverImage.data.attributes.url)
+    : source.coverImage?.url
+    ? normalizeUrl(source.coverImage.url)
+    : "/img/default-placeholder.jpg";
 
   return {
     id: strapiPost.id ?? source.id,
