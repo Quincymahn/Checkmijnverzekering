@@ -6,6 +6,93 @@ import { google } from "googleapis";
 export async function POST(request) {
   const formData = await request.json();
 
+  // ==========================================================
+  // STAP 0: reCAPTCHA Verificatie
+  // ==========================================================
+  const { recaptchaToken, ...actualFormData } = formData;
+
+  try {
+    // Verify reCAPTCHA token
+    const recaptchaResponse = await fetch(
+      "https://www.google.com/recaptcha/api/siteverify",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: `secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${recaptchaToken}`,
+      }
+    );
+
+    const recaptchaResult = await recaptchaResponse.json();
+
+    console.log("reCAPTCHA result:", {
+      success: recaptchaResult.success,
+      score: recaptchaResult.score,
+      action: recaptchaResult.action,
+    });
+
+    // Check if reCAPTCHA verification was successful
+    if (!recaptchaResult.success) {
+      console.error(
+        "reCAPTCHA verificatie mislukt:",
+        recaptchaResult["error-codes"]
+      );
+      return Response.json(
+        {
+          success: false,
+          message: "Beveiligingscontrole mislukt. Probeer het opnieuw.",
+        },
+        { status: 400 }
+      );
+    }
+
+    if (recaptchaResult.action !== "submit_form") {
+      console.warn("reCAPTCHA action mismatch:", recaptchaResult.action);
+      return Response.json(
+        {
+          success: false,
+          message: "Beveiligingsactie ongeldig.",
+        },
+        { status: 400 }
+      );
+    }
+
+    // Check reCAPTCHA score (v3 provides a score from 0.0 to 1.0)
+    // 0.0 is very likely a bot, 1.0 is very likely a human
+    // You can adjust this threshold based on your needs (0.3 - 0.7 is common)
+    if (recaptchaResult.score < 0.5) {
+      console.warn("Lage reCAPTCHA score gedetecteerd:", recaptchaResult.score);
+      return Response.json(
+        {
+          success: false,
+          message:
+            "Verdachte activiteit gedetecteerd. Neem contact op met support als u denkt dat dit een fout is.",
+        },
+        { status: 400 }
+      );
+    }
+
+    console.log(
+      "✓ reCAPTCHA verificatie geslaagd met score:",
+      recaptchaResult.score
+    );
+  } catch (error) {
+    console.error("reCAPTCHA verificatie fout:", error);
+    return Response.json(
+      {
+        success: false,
+        message:
+          "Beveiligingscontrole kon niet worden uitgevoerd. Probeer het later opnieuw.",
+      },
+      { status: 500 }
+    );
+  }
+
+  // ==========================================================
+  // Ga verder met de originele logica met actualFormData
+  // ==========================================================
+
   const dbConfig = {
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
@@ -24,7 +111,7 @@ export async function POST(request) {
     // Regels:
     // - 'wens', 'opmerking' en 'polisFileUrl' worden allemaal in het opmerkingen veld van de spreadsheet geplaatst
     // - Ze komen er onafhankelijk van elkaar in, als ze aanwezig zijn.
-    const { polisFileUrl, wens, opmerking } = formData;
+    const { polisFileUrl, wens, opmerking } = actualFormData;
 
     const parts = [];
 
@@ -47,9 +134,9 @@ export async function POST(request) {
 
     // 2. Maak een gecombineerd adres voor de spreadsheet
     const sheetAdres = [
-      formData.street,
-      formData.huisnummer,
-      formData.huisnummerToevoeging,
+      actualFormData.street,
+      actualFormData.huisnummer,
+      actualFormData.huisnummerToevoeging,
     ]
       .filter(Boolean)
       .join(" ")
@@ -61,9 +148,6 @@ export async function POST(request) {
     console.log("Poging tot verbinden met MySQL database...");
     connection = await mysql.createConnection(dbConfig);
 
-    // --- WIJZIGING: 'reden_aanvraag' wordt nu 'null' of een lege string, afhankelijk van hoe je het wilt opslaan
-    // De 'wens' wordt niet meer direct in de MySQL 'reden_aanvraag' kolom opgeslagen,
-    // maar alleen in de Google Sheet via 'sheetOpmerkingen'.
     const mysqlQuery = `
       INSERT INTO subscribers (
         form_name, voornaam, achternaam, postcode, huisnummer, straat, plaats, 
@@ -72,16 +156,16 @@ export async function POST(request) {
     `;
     const mysqlValues = [
       "Checkmijnverzekering",
-      formData.firstName || null,
-      formData.lastName || null,
-      formData.postcode || null,
-      formData.huisnummer || null,
-      formData.street || null,
-      formData.city || null,
-      formData.phone || null,
-      formData.email || null,
-      null, // <-- 'reden_aanvraag' (voorheen 'wens') is nu null in MySQL
-      formData.opmerking || null, // De originele opmerking (indien apart opgeslagen in MySQL)
+      actualFormData.firstName || null,
+      actualFormData.lastName || null,
+      actualFormData.postcode || null,
+      actualFormData.huisnummer || null,
+      actualFormData.street || null,
+      actualFormData.city || null,
+      actualFormData.phone || null,
+      actualFormData.email || null,
+      null, // 'reden_aanvraag' is nu null in MySQL
+      actualFormData.opmerking || null,
     ];
 
     const [result] = await connection.execute(mysqlQuery, mysqlValues);
@@ -112,19 +196,18 @@ export async function POST(request) {
     });
 
     const sheetRowData = [
-      // formData.wens || "", // Deze is nu vervangen door de logica in sheetOpmerkingen
       "Verzekering",
       "Checkmijnverzekering.nl",
       insertedId,
       "", // Kolom D
-      formData.firstName || "",
+      actualFormData.firstName || "",
       "", // Kolom F
-      formData.lastName || "",
-      formData.phone || "",
-      formData.email || "",
+      actualFormData.lastName || "",
+      actualFormData.phone || "",
+      actualFormData.email || "",
       sheetAdres || "", // Adres: straat + huisnr (kolom L)
-      formData.postcode || "", // Postcode (kolom K)
-      formData.city || "", // Woonplaats (kolom M)
+      actualFormData.postcode || "", // Postcode (kolom K)
+      actualFormData.city || "", // Woonplaats (kolom M)
       "", // Kolom N
       "", // Kolom O
       "", // Kolom P
@@ -176,7 +259,7 @@ export async function POST(request) {
     return Response.json(
       {
         success: false,
-        message: "Er is een fout opgereden bij het verwerken van uw aanvraag.",
+        message: "Er is een fout opgetreden bij het verwerken van uw aanvraag.",
         error:
           process.env.NODE_ENV === "development" ? error.message : undefined,
       },

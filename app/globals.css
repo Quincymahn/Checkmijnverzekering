@@ -114,3 +114,7 @@ ul {
   -ms-overflow-style: none; /* Voor IE en Edge */
   scrollbar-width: none; /* Voor Firefox */
 }
+
+.grecaptcha-badge {
+  visibility: hidden;
+}
