@@ -31,32 +31,32 @@ function OveronsTestimonials() {
     {
       text: "Eindelijk een adviseur die echt luistert en meedenkt. Mijn complete verzekeringspakket is nu overzichtelijker en zelfs goedkoper. Wat een verademing!",
       author: "Laura van den Berg",
-      date: "18 November 2025",
+      date: "1 Oktober 2025",
     },
     {
       text: "Na de aankoop van ons eerste huis zagen we door de bomen het bos niet meer. De adviseur heeft alles van A tot Z perfect voor ons geregeld. Een absolute aanrader.",
       author: "Tom en Sarah",
-      date: "05 November 2025",
+      date: "17 September 2025",
     },
     {
       text: "Als ZZP'er is tijd geld. Ze hebben snel en vakkundig mijn zakelijke verzekeringen op orde gebracht. Ik kan me nu weer volledig op mijn werk richten.",
       author: "Peter de Wit",
-      date: "21 Oktober 2025",
+      date: "10 September 2025",
     },
     {
       text: "Super tevreden over de snelle afhandeling van mijn autoschade. Eén telefoontje was genoeg en alles werd direct in gang gezet. Topservice!",
       author: "Yasmin El Amrani",
-      date: "09 Oktober 2025",
+      date: "2 September 2025",
     },
     {
       text: "Ik wist niet dat ik zoveel kon besparen op mijn oldtimerverzekering. Dankzij het onafhankelijke advies heb ik nu een betere dekking voor een lagere premie.",
       author: "Gerard Willems",
-      date: "25 September 2025",
+      date: "29 Augustus 2025",
     },
     {
       text: "Het overstappen leek een hoop gedoe, maar zij hebben alles voor me geregeld. Ik hoefde zelf nergens achteraan. Echt een zorg minder.",
       author: "Chantal Goossens",
-      date: "14 September 2025",
+      date: "22 Augustus 2025",
     },
   ];
 

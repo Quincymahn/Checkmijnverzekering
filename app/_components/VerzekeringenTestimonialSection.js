@@ -31,17 +31,17 @@ function VerzekeringenTestimonialSection() {
     {
       text: "Ik dacht dat ik goed verzekerd was, maar na de polis-check bleek dat ik voor veel te veel betaalde. Dankzij hun onafhankelijke vergelijking bespaar ik nu maandelijks geld en heb ik zelfs een betere dekking.",
       author: "Sanne de Jong",
-      date: "22 November 2025",
+      date: "1 Oktober 2025",
     },
     {
       text: "Na de aankoop van ons eerste huis hadden we geen idee welke verzekeringen we nodig hadden. De adviseur legde alles rustig en helder uit. Het gaf ons de zekerheid dat alles direct goed geregeld was.",
       author: "Familie El-Masri",
-      date: "10 November 2025",
+      date: "21 September 2025",
     },
     {
       text: "De afhandeling van de schade aan mijn auto werd volledig uit handen genomen. Eén telefoontje was genoeg. Wat een fantastische service en een zorg minder in een stressvolle periode.",
       author: "Robert Pater",
-      date: "29 Oktober 2025",
+      date: "20 September 2025",
     },
   ];
 
