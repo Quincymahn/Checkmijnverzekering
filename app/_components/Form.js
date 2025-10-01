@@ -263,7 +263,25 @@ function Form() {
 
   const onSubmit = async (data) => {
     setSubmitStatus(null);
+
     let recaptchaToken = null;
+
+    // Controleer of reCAPTCHA is uitgeschakeld
+    if (process.env.NEXT_PUBLIC_RECAPTCHA_DISABLED !== "true") {
+      try {
+        if (!recaptchaLoaded || !window.grecaptcha) {
+          throw new Error("reCAPTCHA niet geladen.");
+        }
+        recaptchaToken = await window.grecaptcha.execute(/* ... */);
+      } catch (error) {
+        setSubmitStatus({
+          type: "error",
+          message: "Beveiligingscontrole mislukt.",
+        });
+        return;
+      }
+    }
+
     try {
       if (!recaptchaLoaded || !window.grecaptcha)
         throw new Error(
