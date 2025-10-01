@@ -272,13 +272,16 @@ function Form() {
         if (!recaptchaLoaded || !window.grecaptcha) {
           throw new Error("reCAPTCHA niet geladen.");
         }
-        recaptchaToken = await window.grecaptcha.execute(/* ... */);
+        recaptchaToken = await window.grecaptcha.execute(
+          process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY,
+          { action: "submit_form" }
+        );
       } catch (error) {
         setSubmitStatus({
           type: "error",
-          message: "Beveiligingscontrole mislukt.",
+          message: "Beveiligingscontrole mislukt. Probeer het opnieuw.",
         });
-        return;
+        return; // BELANGRIJK: De functie stopt hier!
       }
     }
 
