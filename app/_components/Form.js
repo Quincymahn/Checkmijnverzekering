@@ -2,6 +2,8 @@
 
 import React, { useEffect, useState } from "react";
 import { useForm, useWatch } from "react-hook-form";
+import FormThankYouStep from "./FormThankYouStep";
+import InsuranceCheckboxGroup from "./InsuranceCheckboxGroup";
 
 // --- START: Logica voor het blokkeren van neppe telefoonnummers ---
 const PLACEHOLDERS = new Set([
@@ -93,6 +95,23 @@ function Form() {
   const [isUploading, setIsUploading] = useState(false);
   const [uploadError, setUploadError] = useState(null);
   const [selectedFileName, setSelectedFileName] = useState(null);
+  const [selectedInsurances, setSelectedInsurances] = useState([]);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+
+  const handleResetForm = () => {
+    setIsTransitioning(true);
+
+    setTimeout(() => {
+      reset();
+      setSubmitStatus(null);
+      setFormInteractionStarted(false);
+      setSelectedInsurances([]);
+
+      setTimeout(() => {
+        setIsTransitioning(false);
+      }, 50);
+    }, 300);
+  };
 
   const insuranceOptions = [
     { label: "Recht en Zekerheid", options: ["Ongevallen", "Rechtsbijstand"] },
@@ -125,7 +144,7 @@ function Form() {
       lastName: "",
       email: "",
       phone: "",
-      wens: "",
+      wens: [],
       postcode: "",
       huisnummer: "",
       huisnummerToevoeging: "",
@@ -331,15 +350,25 @@ function Form() {
       const result = await response.json();
       if (result.success) {
         pushToDataLayer({ event: "form_submit" });
-        setSubmitStatus({
-          type: "success",
-          message: "Uw formulier is succesvol verzonden!",
+        const currentTime = new Date().toLocaleTimeString("nl-NL", {
+          hour: "2-digit",
+          minute: "2-digit",
         });
-        reset();
-        setUploadedFileUrl(null);
-        setSelectedFileName(null);
-        setAddressDetails(null);
-        setFormInteractionStarted(false);
+        setIsTransitioning(true);
+        setTimeout(() => {
+          setSubmitStatus({
+            type: "success",
+            time: currentTime,
+          });
+          setUploadedFileUrl(null);
+          setSelectedFileName(null);
+          setAddressDetails(null);
+          setFormInteractionStarted(false);
+          setSelectedInsurances([]);
+          setTimeout(() => {
+            setIsTransitioning(false);
+          }, 50);
+        }, 300);
       } else {
         pushToDataLayer({
           event: "submission_error",
@@ -387,8 +416,15 @@ function Form() {
       return true;
     },
   });
-  const { onBlur: rhfWensBlur, ...wensRest } = register("wens", {
-    required: "Kies alstublieft een verzekering",
+  const {
+    onChange: rhfWensChange,
+    onBlur: rhfWensBlur,
+    name: wensName,
+    ref: wensRef,
+  } = register("wens", {
+    required: "Kies alstublieft minimaal één verzekering",
+    validate: (value) =>
+      value.length > 0 || "Kies alstublieft minimaal één verzekering",
   });
   const { onBlur: rhfPostcodeBlur, ...postcodeRest } = register("postcode", {
     required: "Postcode is verplicht",
@@ -421,366 +457,547 @@ function Form() {
     },
   });
 
+  if (submitStatus?.type === "success") {
+    return (
+      <div
+        className={`transition-opacity duration-300 ${
+          isTransitioning ? "opacity-0" : "opacity-100"
+        }`}
+      >
+        <FormThankYouStep
+          onReset={handleResetForm}
+          submissionTime={submitStatus.time}
+        />
+      </div>
+    );
+  }
+
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit, onFormError)}
-      onFocus={handleFormStart}
-      className="h-full p-4 bg-white sm:p-6 lg:p-8 shadow-md-custom rounded-2xl"
-      aria-label="Afspraak formulier"
+    <div
+      className={`transition-opacity duration-300 ${
+        isTransitioning ? "opacity-0" : "opacity-100"
+      }`}
     >
-      <h3 className="text-base font-medium sm:text-lg text-slate-800">
-        Meer inzicht, minder premie.
-      </h3>
-      <p className="mt-1 text-xs sm:text-sm text-slate-500">
-        Vul het formulier in om alles verder te bespreken
-      </p>
-      {submitStatus && (
-        <div
-          className={`mt-3 sm:mt-4 p-3 sm:p-4 rounded-lg text-sm ${
-            submitStatus.type === "success"
-              ? "bg-green-50 text-green-800 border border-green-200"
-              : "bg-red-50 text-red-800 border border-red-200"
-          }`}
-        >
-          {submitStatus.message}
-        </div>
-      )}
-      <div className="grid grid-cols-1 gap-3 mt-4 sm:gap-4 sm:mt-6 sm:grid-cols-2">
-        <div>
-          <label
-            htmlFor="firstName"
-            className="block text-xs font-medium sm:text-sm text-slate-700"
-          >
-            Voornaam
-          </label>
-          <input
-            id="firstName"
-            type="text"
-            placeholder="Bijv. Jan"
-            disabled={isSubmitting}
-            className={`mt-1.5 sm:mt-2 block w-full rounded-lg border px-3 sm:px-4 py-2.5 sm:py-3 text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#1b7ced] disabled:opacity-50 ${
-              errors.firstName
-                ? "border-red-300 bg-red-50"
-                : "border-gray-200 bg-gray-50"
-            }`}
-            {...firstNameRest}
-            onBlur={(e) => {
-              rhfFirstNameBlur(e);
-              handleFieldInteraction("firstName");
-            }}
-          />
-          {errors.firstName && (
-            <p className="mt-1 text-xs text-red-600 sm:text-sm">
-              {errors.firstName.message}
-            </p>
-          )}
-        </div>
-
-        <div>
-          <label
-            htmlFor="lastName"
-            className="block text-xs font-medium sm:text-sm text-slate-700"
-          >
-            Achternaam
-          </label>
-          <input
-            id="lastName"
-            type="text"
-            placeholder="Bijv. Jansen"
-            disabled={isSubmitting}
-            className={`mt-1.5 sm:mt-2 block w-full rounded-lg border px-3 sm:px-4 py-2.5 sm:py-3 text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#1b7ced] disabled:opacity-50 ${
-              errors.lastName
-                ? "border-red-300 bg-red-50"
-                : "border-gray-200 bg-gray-50"
-            }`}
-            {...lastNameRest}
-            onBlur={(e) => {
-              rhfLastNameBlur(e);
-              handleFieldInteraction("lastName");
-            }}
-          />
-          {errors.lastName && (
-            <p className="mt-1 text-xs text-red-600 sm:text-sm">
-              {errors.lastName.message}
-            </p>
-          )}
-        </div>
-
-        <div>
-          <label
-            htmlFor="email"
-            className="block text-xs font-medium sm:text-sm text-slate-700"
-          >
-            E-mailadres
-          </label>
-          <input
-            id="email"
-            type="email"
-            placeholder="naam@voorbeeld.com"
-            disabled={isSubmitting}
-            className={`mt-1.5 sm:mt-2 block w-full rounded-lg border px-3 sm:px-4 py-2.5 sm:py-3 text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#1b7ced] disabled:opacity-50 ${
-              errors.email
-                ? "border-red-300 bg-red-50"
-                : "border-gray-200 bg-gray-50"
-            }`}
-            {...emailRest}
-            onBlur={(e) => {
-              rhfEmailBlur(e);
-              handleFieldInteraction("email");
-            }}
-          />
-          {errors.email && (
-            <p className="mt-1 text-xs text-red-600 sm:text-sm">
-              {errors.email.message}
-            </p>
-          )}
-        </div>
-
-        <div>
-          <label
-            htmlFor="phone"
-            className="block text-xs font-medium sm:text-sm text-slate-700"
-          >
-            Telefoonnummer
-          </label>
-          <input
-            id="phone"
-            type="tel"
-            placeholder="06 12345678"
-            disabled={isSubmitting}
-            className={`mt-1.5 sm:mt-2 block w-full rounded-lg border px-3 sm:px-4 py-2.5 sm:py-3 text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#1b7ced] disabled:opacity-50 ${
-              errors.phone
-                ? "border-red-300 bg-red-50"
-                : "border-gray-200 bg-gray-50"
-            }`}
-            {...phoneRest}
-            onBlur={(e) => {
-              rhfPhoneBlur(e);
-              handleFieldInteraction("phone");
-            }}
-          />
-          {errors.phone && (
-            <p className="mt-1 text-xs text-red-600 sm:text-sm">
-              {errors.phone.message}
-            </p>
-          )}
-        </div>
-
-        <div className="sm:col-span-2">
-          <label
-            htmlFor="wens"
-            className="block text-xs font-medium sm:text-sm text-slate-700"
-          >
-            Uw wens
-          </label>
-          <select
-            id="wens"
-            disabled={isSubmitting}
-            className={`mt-1.5 sm:mt-2 block w-full rounded-lg border px-3 sm:px-4 py-2.5 sm:py-3 text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#1b7ced] disabled:opacity-50 ${
-              errors.wens
-                ? "border-red-300 bg-red-50"
-                : "border-gray-200 bg-gray-50"
-            }`}
-            {...wensRest}
-            onBlur={(e) => {
-              rhfWensBlur(e);
-              handleFieldInteraction("wens");
-            }}
-          >
-            <option className="hidden" value="" disabled>
-              Maak een keuze
-            </option>
-            {insuranceOptions.map((group) => (
-              <optgroup key={group.label} label={group.label}>
-                {group.options.map((option) => (
-                  <option key={option} value={option}>
-                    {option}
-                  </option>
-                ))}
-              </optgroup>
-            ))}
-          </select>
-          {errors.wens && (
-            <p className="mt-1 text-xs text-red-600 sm:text-sm">
-              {errors.wens.message}
-            </p>
-          )}
-        </div>
-
-        <div className="sm:col-span-2">
-          <div className="grid grid-cols-12 gap-2 sm:gap-4">
-            <div className="col-span-5 sm:col-span-4">
-              <label
-                htmlFor="postcode"
-                className="block text-xs font-medium sm:text-sm text-slate-700"
-              >
-                Postcode
-              </label>
-              <input
-                id="postcode"
-                type="text"
-                placeholder="1234AB"
-                disabled={isSubmitting}
-                className={`mt-1.5 sm:mt-2 block w-full rounded-lg border px-2 sm:px-4 py-2.5 sm:py-3 text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#1b7ced] disabled:opacity-50 ${
-                  errors.postcode
-                    ? "border-red-300 bg-red-50"
-                    : "border-gray-200 bg-gray-50"
-                }`}
-                {...postcodeRest}
-                onBlur={(e) => {
-                  rhfPostcodeBlur(e);
-                  triggerAddressLookup();
-                  handleFieldInteraction("postcode");
-                }}
-              />
-              {errors.postcode && (
-                <p className="mt-1 text-xs text-red-600 sm:text-sm">
-                  {errors.postcode.message}
-                </p>
-              )}
-            </div>
-            <div className="col-span-5 sm:col-span-4">
-              <label
-                htmlFor="huisnummer"
-                className="block text-xs font-medium sm:text-sm text-slate-700"
-              >
-                Huisnr.
-              </label>
-              <input
-                id="huisnummer"
-                type="text"
-                placeholder="12"
-                disabled={isSubmitting}
-                className={`mt-1.5 sm:mt-2 block w-full rounded-lg border px-2 sm:px-4 py-2.5 sm:py-3 text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#1b7ced] disabled:opacity-50 ${
-                  errors.huisnummer
-                    ? "border-red-300 bg-red-50"
-                    : "border-gray-200 bg-gray-50"
-                }`}
-                {...huisnummerRest}
-                onBlur={(e) => {
-                  rhfHuisnummerBlur(e);
-                  triggerAddressLookup();
-                  handleFieldInteraction("huisnummer");
-                }}
-              />
-              {errors.huisnummer && (
-                <p className="mt-1 text-xs text-red-600 sm:text-sm">
-                  {errors.huisnummer.message}
-                </p>
-              )}
-            </div>
-            <div className="col-span-2 sm:col-span-4">
-              <label
-                htmlFor="huisnummerToevoeging"
-                className="block text-xs font-medium sm:text-sm text-slate-700"
-              >
-                Toev.
-              </label>
-              <input
-                id="huisnummerToevoeging"
-                type="text"
-                placeholder="A"
-                disabled={isSubmitting}
-                className={`mt-1.5 sm:mt-2 block w-full rounded-lg border border-gray-200 bg-gray-50 px-2 sm:px-4 py-2.5 sm:py-3 text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#1b7ced] disabled:opacity-50`}
-                {...huisnummerToevoegingRest}
-                onBlur={(e) => {
-                  rhfHuisnummerToevoegingBlur(e);
-                  triggerAddressLookup();
-                  handleFieldInteraction("huisnummerToevoeging");
-                }}
-              />
-            </div>
-          </div>
-        </div>
-
-        {(isCheckingPostcode || postcodeError) && (
-          <div className="sm:col-span-2">
-            {isCheckingPostcode && (
-              <div className="flex items-center text-xs sm:text-sm text-slate-500">
-                <svg
-                  className="w-4 h-4 mr-2 sm:w-5 sm:h-5 animate-spin"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                >
-                  <circle
-                    className="opacity-25"
-                    cx="12"
-                    cy="12"
-                    r="10"
-                    stroke="currentColor"
-                    strokeWidth="4"
-                  ></circle>
-                  <path
-                    className="opacity-75"
-                    fill="currentColor"
-                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                  ></path>
-                </svg>
-                Adres wordt opgehaald...
-              </div>
-            )}
-            {postcodeError && (
-              <p className="text-xs text-red-600 sm:text-sm">{postcodeError}</p>
-            )}
+      <form
+        onSubmit={handleSubmit(onSubmit, onFormError)}
+        onFocus={handleFormStart}
+        className="h-full p-4 bg-white sm:p-6 lg:p-8 shadow-md-custom rounded-2xl"
+        aria-label="Afspraak formulier"
+      >
+        <h3 className="text-base font-medium sm:text-lg text-slate-800">
+          Meer inzicht, minder premie.
+        </h3>
+        <p className="mt-1 text-xs sm:text-sm text-slate-500">
+          Vul het formulier in om alles verder te bespreken
+        </p>
+        {submitStatus?.type === "error" && (
+          <div className="p-3 mt-3 text-sm text-red-800 border border-red-200 rounded-lg sm:mt-4 sm:p-4 bg-red-50">
+            {submitStatus.message}
           </div>
         )}
-
-        {addressDetails && (
-          <>
-            <div>
-              <label
-                htmlFor="street"
-                className="block text-xs font-medium sm:text-sm text-slate-700"
-              >
-                Straat
-              </label>
-              <input
-                id="street"
-                type="text"
-                readOnly
-                disabled
-                className="mt-1.5 sm:mt-2 block w-full rounded-lg border border-gray-300 bg-gray-200 px-3 py-2.5 text-sm text-gray-700 cursor-not-allowed sm:px-4 sm:py-3"
-                {...register("street", { required: "Straat is verplicht" })}
-              />
-            </div>
-            <div>
-              <label
-                htmlFor="city"
-                className="block text-xs font-medium sm:text-sm text-slate-700"
-              >
-                Woonplaats
-              </label>
-              <input
-                id="city"
-                type="text"
-                readOnly
-                disabled
-                className="mt-1.5 sm:mt-2 block w-full rounded-lg border border-gray-300 bg-gray-200 px-3 py-2.5 text-sm text-gray-700 cursor-not-allowed sm:px-4 sm:py-3"
-                {...register("city", { required: "Woonplaats is verplicht" })}
-              />
-            </div>
-          </>
-        )}
-
-        <div className="sm:col-span-2">
-          <label className="block text-xs font-medium sm:text-sm text-slate-700">
-            Polisbladen uploaden (optioneel)
-          </label>
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-3 mt-1.5 sm:mt-2">
+        <div className="grid grid-cols-1 gap-3 mt-4 sm:gap-4 sm:mt-6 sm:grid-cols-2">
+          <div>
             <label
-              htmlFor="polis"
-              className={`inline-flex cursor-pointer items-center gap-2 rounded-md border border-gray-200 bg-white px-3 py-2 text-xs sm:text-sm shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[#1b7ced] ${
-                isSubmitting || isUploading
-                  ? "opacity-50 cursor-not-allowed"
-                  : ""
-              }`}
+              htmlFor="firstName"
+              className="block text-xs font-medium sm:text-sm text-slate-700"
             >
-              {isUploading ? (
+              Voornaam
+            </label>
+            <input
+              id="firstName"
+              type="text"
+              placeholder="Bijv. Jan"
+              disabled={isSubmitting}
+              className={`mt-1.5 sm:mt-2 block w-full rounded-lg border px-3 sm:px-4 py-2.5 sm:py-3 text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#1b7ced] disabled:opacity-50 ${
+                errors.firstName
+                  ? "border-red-300 bg-red-50"
+                  : "border-gray-200 bg-gray-50"
+              }`}
+              {...firstNameRest}
+              onBlur={(e) => {
+                rhfFirstNameBlur(e);
+                handleFieldInteraction("firstName");
+              }}
+            />
+            {errors.firstName && (
+              <p className="mt-1 text-xs text-red-600 sm:text-sm">
+                {errors.firstName.message}
+              </p>
+            )}
+          </div>
+
+          <div>
+            <label
+              htmlFor="lastName"
+              className="block text-xs font-medium sm:text-sm text-slate-700"
+            >
+              Achternaam
+            </label>
+            <input
+              id="lastName"
+              type="text"
+              placeholder="Bijv. Jansen"
+              disabled={isSubmitting}
+              className={`mt-1.5 sm:mt-2 block w-full rounded-lg border px-3 sm:px-4 py-2.5 sm:py-3 text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#1b7ced] disabled:opacity-50 ${
+                errors.lastName
+                  ? "border-red-300 bg-red-50"
+                  : "border-gray-200 bg-gray-50"
+              }`}
+              {...lastNameRest}
+              onBlur={(e) => {
+                rhfLastNameBlur(e);
+                handleFieldInteraction("lastName");
+              }}
+            />
+            {errors.lastName && (
+              <p className="mt-1 text-xs text-red-600 sm:text-sm">
+                {errors.lastName.message}
+              </p>
+            )}
+          </div>
+
+          <div>
+            <label
+              htmlFor="email"
+              className="block text-xs font-medium sm:text-sm text-slate-700"
+            >
+              E-mailadres
+            </label>
+            <input
+              id="email"
+              type="email"
+              placeholder="naam@voorbeeld.com"
+              disabled={isSubmitting}
+              className={`mt-1.5 sm:mt-2 block w-full rounded-lg border px-3 sm:px-4 py-2.5 sm:py-3 text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#1b7ced] disabled:opacity-50 ${
+                errors.email
+                  ? "border-red-300 bg-red-50"
+                  : "border-gray-200 bg-gray-50"
+              }`}
+              {...emailRest}
+              onBlur={(e) => {
+                rhfEmailBlur(e);
+                handleFieldInteraction("email");
+              }}
+            />
+            {errors.email && (
+              <p className="mt-1 text-xs text-red-600 sm:text-sm">
+                {errors.email.message}
+              </p>
+            )}
+          </div>
+
+          <div>
+            <label
+              htmlFor="phone"
+              className="block text-xs font-medium sm:text-sm text-slate-700"
+            >
+              Telefoonnummer
+            </label>
+            <input
+              id="phone"
+              type="tel"
+              placeholder="06 12345678"
+              disabled={isSubmitting}
+              className={`mt-1.5 sm:mt-2 block w-full rounded-lg border px-3 sm:px-4 py-2.5 sm:py-3 text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#1b7ced] disabled:opacity-50 ${
+                errors.phone
+                  ? "border-red-300 bg-red-50"
+                  : "border-gray-200 bg-gray-50"
+              }`}
+              {...phoneRest}
+              onBlur={(e) => {
+                rhfPhoneBlur(e);
+                handleFieldInteraction("phone");
+              }}
+            />
+            {errors.phone && (
+              <p className="mt-1 text-xs text-red-600 sm:text-sm">
+                {errors.phone.message}
+              </p>
+            )}
+          </div>
+
+          <div className="sm:col-span-2">
+            <label className="block mb-3 text-xs font-medium sm:text-sm text-slate-700">
+              Uw wens
+              <span className="ml-1 font-normal text-slate-400">
+                (selecteer één of meerdere)
+              </span>
+            </label>
+            <InsuranceCheckboxGroup
+              insuranceOptions={insuranceOptions}
+              selectedOptions={selectedInsurances}
+              onChange={(newSelection) => {
+                setSelectedInsurances(newSelection);
+                setValue("wens", newSelection, {
+                  shouldValidate: true,
+                  shouldDirty: true,
+                });
+                handleFieldInteraction("wens");
+              }}
+              disabled={isSubmitting}
+              error={errors.wens}
+            />
+            {errors.wens && (
+              <p className="mt-2 text-xs text-red-600 sm:text-sm">
+                {errors.wens.message}
+              </p>
+            )}
+          </div>
+
+          <div className="sm:col-span-2">
+            <div className="grid grid-cols-12 gap-2 sm:gap-4">
+              <div className="col-span-5 sm:col-span-4">
+                <label
+                  htmlFor="postcode"
+                  className="block text-xs font-medium sm:text-sm text-slate-700"
+                >
+                  Postcode
+                </label>
+                <input
+                  id="postcode"
+                  type="text"
+                  placeholder="1234AB"
+                  disabled={isSubmitting}
+                  className={`mt-1.5 sm:mt-2 block w-full rounded-lg border px-2 sm:px-4 py-2.5 sm:py-3 text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#1b7ced] disabled:opacity-50 ${
+                    errors.postcode
+                      ? "border-red-300 bg-red-50"
+                      : "border-gray-200 bg-gray-50"
+                  }`}
+                  {...postcodeRest}
+                  onBlur={(e) => {
+                    rhfPostcodeBlur(e);
+                    triggerAddressLookup();
+                    handleFieldInteraction("postcode");
+                  }}
+                />
+                {errors.postcode && (
+                  <p className="mt-1 text-xs text-red-600 sm:text-sm">
+                    {errors.postcode.message}
+                  </p>
+                )}
+              </div>
+              <div className="col-span-5 sm:col-span-4">
+                <label
+                  htmlFor="huisnummer"
+                  className="block text-xs font-medium sm:text-sm text-slate-700"
+                >
+                  Huisnr.
+                </label>
+                <input
+                  id="huisnummer"
+                  type="text"
+                  placeholder="12"
+                  disabled={isSubmitting}
+                  className={`mt-1.5 sm:mt-2 block w-full rounded-lg border px-2 sm:px-4 py-2.5 sm:py-3 text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#1b7ced] disabled:opacity-50 ${
+                    errors.huisnummer
+                      ? "border-red-300 bg-red-50"
+                      : "border-gray-200 bg-gray-50"
+                  }`}
+                  {...huisnummerRest}
+                  onBlur={(e) => {
+                    rhfHuisnummerBlur(e);
+                    triggerAddressLookup();
+                    handleFieldInteraction("huisnummer");
+                  }}
+                />
+                {errors.huisnummer && (
+                  <p className="mt-1 text-xs text-red-600 sm:text-sm">
+                    {errors.huisnummer.message}
+                  </p>
+                )}
+              </div>
+              <div className="col-span-2 sm:col-span-4">
+                <label
+                  htmlFor="huisnummerToevoeging"
+                  className="block text-xs font-medium sm:text-sm text-slate-700"
+                >
+                  Toev.
+                </label>
+                <input
+                  id="huisnummerToevoeging"
+                  type="text"
+                  placeholder="A"
+                  disabled={isSubmitting}
+                  className={`mt-1.5 sm:mt-2 block w-full rounded-lg border border-gray-200 bg-gray-50 px-2 sm:px-4 py-2.5 sm:py-3 text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#1b7ced] disabled:opacity-50`}
+                  {...huisnummerToevoegingRest}
+                  onBlur={(e) => {
+                    rhfHuisnummerToevoegingBlur(e);
+                    triggerAddressLookup();
+                    handleFieldInteraction("huisnummerToevoeging");
+                  }}
+                />
+              </div>
+            </div>
+          </div>
+
+          {(isCheckingPostcode || postcodeError) && (
+            <div className="sm:col-span-2">
+              {isCheckingPostcode && (
+                <div className="flex items-center text-xs sm:text-sm text-slate-500">
+                  <svg
+                    className="w-4 h-4 mr-2 sm:w-5 sm:h-5 animate-spin"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle
+                      className="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="4"
+                    ></circle>
+                    <path
+                      className="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                    ></path>
+                  </svg>
+                  Adres wordt opgehaald...
+                </div>
+              )}
+              {postcodeError && (
+                <p className="text-xs text-red-600 sm:text-sm">
+                  {postcodeError}
+                </p>
+              )}
+            </div>
+          )}
+
+          {addressDetails && (
+            <>
+              <div>
+                <label
+                  htmlFor="street"
+                  className="block text-xs font-medium sm:text-sm text-slate-700"
+                >
+                  Straat
+                </label>
+                <input
+                  id="street"
+                  type="text"
+                  readOnly
+                  disabled
+                  className="mt-1.5 sm:mt-2 block w-full rounded-lg border border-gray-300 bg-gray-200 px-3 py-2.5 text-sm text-gray-700 cursor-not-allowed sm:px-4 sm:py-3"
+                  {...register("street", { required: "Straat is verplicht" })}
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor="city"
+                  className="block text-xs font-medium sm:text-sm text-slate-700"
+                >
+                  Woonplaats
+                </label>
+                <input
+                  id="city"
+                  type="text"
+                  readOnly
+                  disabled
+                  className="mt-1.5 sm:mt-2 block w-full rounded-lg border border-gray-300 bg-gray-200 px-3 py-2.5 text-sm text-gray-700 cursor-not-allowed sm:px-4 sm:py-3"
+                  {...register("city", { required: "Woonplaats is verplicht" })}
+                />
+              </div>
+            </>
+          )}
+
+          <div className="sm:col-span-2">
+            <label className="block text-xs font-medium sm:text-sm text-slate-700">
+              Polisbladen uploaden (optioneel)
+            </label>
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-3 mt-1.5 sm:mt-2">
+              <label
+                htmlFor="polis"
+                className={`inline-flex cursor-pointer items-center gap-2 rounded-md border border-gray-200 bg-white px-3 py-2 text-xs sm:text-sm shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[#1b7ced] ${
+                  isSubmitting || isUploading
+                    ? "opacity-50 cursor-not-allowed"
+                    : ""
+                }`}
+              >
+                {isUploading ? (
+                  <>
+                    {" "}
+                    <svg className="w-4 h-4 animate-spin" viewBox="0 0 24 24">
+                      {" "}
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                        fill="none"
+                      />{" "}
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                      />{" "}
+                    </svg>{" "}
+                    <span>Uploaden...</span>{" "}
+                  </>
+                ) : (
+                  <>
+                    {" "}
+                    <svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      aria-hidden
+                      className="sm:w-4 sm:h-4"
+                    >
+                      {" "}
+                      <path
+                        d="M12 3v12"
+                        stroke="#2563EB"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />{" "}
+                      <path
+                        d="M9 6l3-3 3 3"
+                        stroke="#2563EB"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />{" "}
+                      <path
+                        d="M21 21H3"
+                        stroke="#2563EB"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />{" "}
+                    </svg>{" "}
+                    <span>Bestand kiezen</span>{" "}
+                  </>
+                )}
+                <input
+                  id="polis"
+                  type="file"
+                  accept=".pdf,.jpg,.jpeg,.png"
+                  disabled={isSubmitting || isUploading}
+                  className="sr-only"
+                  {...polisRest}
+                  onChange={async (e) => {
+                    await rhfPolisChange(e);
+                    const file = e.target.files?.[0];
+                    if (file) {
+                      if (file.size > 10 * 1024 * 1024) {
+                        setUploadError("Bestand is te groot (max 10MB)");
+                        e.target.value = "";
+                        return;
+                      }
+                      await handleFileUpload(file);
+                    }
+                  }}
+                  onBlur={(e) => {
+                    rhfPolisBlur(e);
+                    handleFieldInteraction("polis");
+                  }}
+                />
+              </label>
+              <div className="flex flex-col gap-1">
+                <span className="text-xs sm:text-sm text-slate-400">
+                  PNG, JPG, PDF — max 10MB
+                </span>
+                {selectedFileName && (
+                  <div className="flex items-center gap-2">
+                    <span className="flex items-center gap-1 text-xs text-green-600">
+                      <svg
+                        className="w-4 h-4"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M5 13l4 4L19 7"
+                        />
+                      </svg>
+                      {selectedFileName}
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setUploadedFileUrl(null);
+                        setSelectedFileName(null);
+                        const polisInput = document.getElementById("polis");
+                        if (polisInput) {
+                          polisInput.value = "";
+                        }
+                      }}
+                      className="text-xs text-red-600 hover:text-red-800"
+                    >
+                      Verwijderen
+                    </button>
+                  </div>
+                )}
+              </div>
+            </div>
+            {uploadError && (
+              <p className="mt-1 text-xs text-red-600 sm:text-sm">
+                {uploadError}
+              </p>
+            )}
+          </div>
+
+          <div className="sm:col-span-2">
+            <label
+              htmlFor="opmerking"
+              className="block text-xs font-medium sm:text-sm text-slate-700"
+            >
+              Opmerking
+            </label>
+            <textarea
+              id="opmerking"
+              rows="4"
+              placeholder="Eventuele toelichting..."
+              disabled={isSubmitting}
+              className={`mt-1.5 sm:mt-2 block w-full resize-none rounded-lg border px-3 sm:px-4 py-2.5 sm:py-3 text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#1b7ced] disabled:opacity-50 ${
+                errors.opmerking
+                  ? "border-red-300 bg-red-50"
+                  : "border-gray-200 bg-gray-50"
+              }`}
+              {...opmerkingRest}
+              onBlur={(e) => {
+                rhfOpmerkingBlur(e);
+                handleFieldInteraction("opmerking");
+              }}
+            />
+            {errors.opmerking && (
+              <p className="mt-1 text-xs text-red-600 sm:text-sm">
+                {errors.opmerking.message}
+              </p>
+            )}
+          </div>
+        </div>
+
+        <div className="mt-4 sm:mt-6">
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className={`group relative inline-block text-base sm:text-lg font-medium py-2.5 sm:py-3 px-6 sm:px-8 rounded-md shadow-md-custom overflow-hidden transition-all duration-300 w-full ${
+              isSubmitting
+                ? "bg-gray-400 cursor-not-allowed"
+                : "bg-[#00af76] hover:bg-[#009865] text-white"
+            }`}
+          >
+            {!isSubmitting && (
+              <span className="absolute top-0 w-full h-full transition-transform duration-500 ease-in-out transform -skew-x-12 -left-[105%] bg-gradient-to-r from-transparent to-white/30 group-hover:translate-x-[110%]"></span>
+            )}
+            <span className="relative flex items-center justify-center gap-2">
+              {isSubmitting ? (
                 <>
                   {" "}
-                  <svg className="w-4 h-4 animate-spin" viewBox="0 0 24 24">
-                    {" "}
+                  <svg
+                    className="w-4 h-4 sm:w-5 sm:h-5 animate-spin"
+                    viewBox="0 0 24 24"
+                  >
                     <circle
                       className="opacity-25"
                       cx="12"
@@ -789,222 +1006,45 @@ function Form() {
                       stroke="currentColor"
                       strokeWidth="4"
                       fill="none"
-                    />{" "}
+                    />
                     <path
                       className="opacity-75"
                       fill="currentColor"
                       d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                    />{" "}
+                    />
                   </svg>{" "}
-                  <span>Uploaden...</span>{" "}
+                  Bezig met verzenden...{" "}
                 </>
               ) : (
-                <>
-                  {" "}
-                  <svg
-                    width="14"
-                    height="14"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    aria-hidden
-                    className="sm:w-4 sm:h-4"
-                  >
-                    {" "}
-                    <path
-                      d="M12 3v12"
-                      stroke="#2563EB"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />{" "}
-                    <path
-                      d="M9 6l3-3 3 3"
-                      stroke="#2563EB"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />{" "}
-                    <path
-                      d="M21 21H3"
-                      stroke="#2563EB"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />{" "}
-                  </svg>{" "}
-                  <span>Bestand kiezen</span>{" "}
-                </>
+                "Verzenden"
               )}
-              <input
-                id="polis"
-                type="file"
-                accept=".pdf,.jpg,.jpeg,.png"
-                disabled={isSubmitting || isUploading}
-                className="sr-only"
-                {...polisRest}
-                onChange={async (e) => {
-                  await rhfPolisChange(e);
-                  const file = e.target.files?.[0];
-                  if (file) {
-                    if (file.size > 10 * 1024 * 1024) {
-                      setUploadError("Bestand is te groot (max 10MB)");
-                      e.target.value = "";
-                      return;
-                    }
-                    await handleFileUpload(file);
-                  }
-                }}
-                onBlur={(e) => {
-                  rhfPolisBlur(e);
-                  handleFieldInteraction("polis");
-                }}
-              />
-            </label>
-            <div className="flex flex-col gap-1">
-              <span className="text-xs sm:text-sm text-slate-400">
-                PNG, JPG, PDF — max 10MB
-              </span>
-              {selectedFileName && (
-                <div className="flex items-center gap-2">
-                  <span className="flex items-center gap-1 text-xs text-green-600">
-                    <svg
-                      className="w-4 h-4"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                    {selectedFileName}
-                  </span>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setUploadedFileUrl(null);
-                      setSelectedFileName(null);
-                      const polisInput = document.getElementById("polis");
-                      if (polisInput) {
-                        polisInput.value = "";
-                      }
-                    }}
-                    className="text-xs text-red-600 hover:text-red-800"
-                  >
-                    Verwijderen
-                  </button>
-                </div>
-              )}
-            </div>
-          </div>
-          {uploadError && (
-            <p className="mt-1 text-xs text-red-600 sm:text-sm">
-              {uploadError}
-            </p>
-          )}
+            </span>
+          </button>
         </div>
 
-        <div className="sm:col-span-2">
-          <label
-            htmlFor="opmerking"
-            className="block text-xs font-medium sm:text-sm text-slate-700"
+        <p className="mt-3 text-xs text-center text-slate-400">
+          Dit formulier is beschermd door reCAPTCHA en het Google{" "}
+          <a
+            href="https://policies.google.com/privacy"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline hover:text-slate-600"
           >
-            Opmerking
-          </label>
-          <textarea
-            id="opmerking"
-            rows="4"
-            placeholder="Eventuele toelichting..."
-            disabled={isSubmitting}
-            className={`mt-1.5 sm:mt-2 block w-full resize-none rounded-lg border px-3 sm:px-4 py-2.5 sm:py-3 text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#1b7ced] disabled:opacity-50 ${
-              errors.opmerking
-                ? "border-red-300 bg-red-50"
-                : "border-gray-200 bg-gray-50"
-            }`}
-            {...opmerkingRest}
-            onBlur={(e) => {
-              rhfOpmerkingBlur(e);
-              handleFieldInteraction("opmerking");
-            }}
-          />
-          {errors.opmerking && (
-            <p className="mt-1 text-xs text-red-600 sm:text-sm">
-              {errors.opmerking.message}
-            </p>
-          )}
-        </div>
-      </div>
-
-      <div className="mt-4 sm:mt-6">
-        <button
-          type="submit"
-          disabled={isSubmitting}
-          className={`group relative inline-block text-base sm:text-lg font-medium py-2.5 sm:py-3 px-6 sm:px-8 rounded-md shadow-md-custom overflow-hidden transition-all duration-300 w-full ${
-            isSubmitting
-              ? "bg-gray-400 cursor-not-allowed"
-              : "bg-[#00af76] hover:bg-[#009865] text-white"
-          }`}
-        >
-          {!isSubmitting && (
-            <span className="absolute top-0 w-full h-full transition-transform duration-500 ease-in-out transform -skew-x-12 -left-[105%] bg-gradient-to-r from-transparent to-white/30 group-hover:translate-x-[110%]"></span>
-          )}
-          <span className="relative flex items-center justify-center gap-2">
-            {isSubmitting ? (
-              <>
-                {" "}
-                <svg
-                  className="w-4 h-4 sm:w-5 sm:h-5 animate-spin"
-                  viewBox="0 0 24 24"
-                >
-                  <circle
-                    className="opacity-25"
-                    cx="12"
-                    cy="12"
-                    r="10"
-                    stroke="currentColor"
-                    strokeWidth="4"
-                    fill="none"
-                  />
-                  <path
-                    className="opacity-75"
-                    fill="currentColor"
-                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                  />
-                </svg>{" "}
-                Bezig met verzenden...{" "}
-              </>
-            ) : (
-              "Verzenden"
-            )}
-          </span>
-        </button>
-      </div>
-
-      <p className="mt-3 text-xs text-center text-slate-400">
-        Dit formulier is beschermd door reCAPTCHA en het Google{" "}
-        <a
-          href="https://policies.google.com/privacy"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="underline hover:text-slate-600"
-        >
-          Privacybeleid
-        </a>{" "}
-        en{" "}
-        <a
-          href="https://policies.google.com/terms"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="underline hover:text-slate-600"
-        >
-          Servicevoorwaarden
-        </a>{" "}
-        zijn van toepassing.
-      </p>
-    </form>
+            Privacybeleid
+          </a>{" "}
+          en{" "}
+          <a
+            href="https://policies.google.com/terms"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline hover:text-slate-600"
+          >
+            Servicevoorwaarden
+          </a>{" "}
+          zijn van toepassing.
+        </p>
+      </form>
+    </div>
   );
 }
 

@@ -16,7 +16,7 @@ function NavLink({ href, children, className = "", onClick }) {
         onClick={onClick}
         className={`relative inline-block group px-1 ${className}`}
       >
-        <span className="font-medium">{children}</span>
+        <span className="font-medium text-nowrap">{children}</span>
         {/* underline bar */}
         <span
           aria-hidden

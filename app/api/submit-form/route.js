@@ -103,21 +103,14 @@ export async function POST(request) {
   let connection;
 
   try {
-    // ==========================================================
-    // --- Data voorbereiden ---
-    // ==========================================================
-
-    // 1. Maak een aparte opmerking voor de spreadsheet (incl. polis link)
-    // Regels:
-    // - 'wens', 'opmerking' en 'polisFileUrl' worden allemaal in het opmerkingen veld van de spreadsheet geplaatst
-    // - Ze komen er onafhankelijk van elkaar in, als ze aanwezig zijn.
     const { polisFileUrl, wens, opmerking } = actualFormData;
 
     const parts = [];
 
     // 'Wens' wordt toegevoegd als het aanwezig is
-    if (wens) {
-      parts.push(`Wens: ${wens}`);
+    // wens is nu een array, dus we joinen ze met komma's
+    if (wens && Array.isArray(wens) && wens.length > 0) {
+      parts.push(`Wens: ${wens.join(", ")}`);
     }
 
     // Als er een vrije opmerking is, voeg die toe
@@ -131,6 +124,11 @@ export async function POST(request) {
     }
 
     const sheetOpmerkingen = parts.length > 0 ? parts.join(" | ") : "";
+
+    // 1b. Maak een string voor de database (alleen de wens/verzekeringen)
+    // Voor de database slaan we het op als comma-separated string
+    const databaseWens =
+      wens && Array.isArray(wens) && wens.length > 0 ? wens.join(", ") : null;
 
     // 2. Maak een gecombineerd adres voor de spreadsheet
     const sheetAdres = [
@@ -164,7 +162,7 @@ export async function POST(request) {
       actualFormData.city || null,
       actualFormData.phone || null,
       actualFormData.email || null,
-      null, // 'reden_aanvraag' is nu null in MySQL
+      databaseWens, // 'reden_aanvraag' is nu null in MySQL
       actualFormData.opmerking || null,
     ];
 

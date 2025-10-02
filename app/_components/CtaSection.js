@@ -14,11 +14,11 @@ function CtaSection() {
           kan zijn. Start vandaag nog met Checkmijnverzekering.
         </p>
         <p className="mt-5 text-gray-300 mb-7">
-          Benieuwd hoeveel jij kunt besparen? Doe <br /> nu de check het kost je
-          maar 2 minuten
+          Benieuwd hoeveel jij kunt besparen? Doe <br /> nu de check, het kost
+          je maar 2 minuten
         </p>
         <Link
-            href="/plan-een-gesprek"
+          href="/plan-een-gesprek"
           className="group relative inline-block text-lg font-medium
     bg-[#00af76] text-white 
     py-1 px-8 rounded-full

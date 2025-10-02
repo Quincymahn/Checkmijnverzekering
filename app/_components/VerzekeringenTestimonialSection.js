@@ -76,7 +76,7 @@ function VerzekeringenTestimonialSection() {
                 ))}
               </div>
               <p className="text-sm text-center text-gray-200">
-                Op basis van 236 klantbeoordelingen
+                Op basis van 307 klantbeoordelingen
               </p>
             </div>
             <Image

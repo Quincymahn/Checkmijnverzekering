@@ -97,7 +97,7 @@ function AfspraakMain() {
                 alt="vector image of happy customers"
                 className="object-cover h-full rounded-2xl"
               />
-              <p className="absolute bottom-0 left-0 w-full px-4 py-4 text-xs font-medium text-center text-white sm:text-sm sm:py-7 sm:px-15 bg-gray-400/40 backdrop-blur-sm rounded-b-2xl">
+              <p className="absolute bottom-0 left-0 w-full px-4 py-4 text-xs font-medium text-center text-white sm:text-sm sm:py-7 sm:px-15 bg-gray-700/40 backdrop-blur-sm rounded-b-2xl">
                 Persoonlijke & heldere begeleiding. upload uw polis voor een
                 snelle analyse.
               </p>

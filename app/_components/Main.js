@@ -9,7 +9,7 @@ function Main() {
         {" "}
         {/* Min-hoogte voor de container */}
         <Image
-          src="/img/woman-driving-searching-camping-place.jpg"
+          src="/img/medium-shot-smiley-mother-watching-kid.jpg"
           width={2000}
           height={2000}
           alt="Main hero section"
