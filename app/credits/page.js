@@ -7,12 +7,12 @@ import Link from "next/link";
 const imageCredits = [
   {
     id: 1,
-    filename: "woman-driving-camping.jpg",
-    title: "Woman driving and searching for a camping place",
+    filename: "medium-shot-smiley-mother-watching-kid.jpg",
+    title: "Medium shot smiley mother watching kid",
     author: "freepik",
     authorUrl: "https://www.freepik.com/author/freepik",
     imageUrl:
-      "https://www.freepik.com/free-photo/woman-driving-searching-camping-place_10369143.htm",
+      "https://www.freepik.com/free-photo/medium-shot-smiley-mother-watching-kid_10515622.htm",
     platform: "Freepik",
     license: "Free License (with attribution)",
     usedOn: "Homepage - Hero Section",
