@@ -13,7 +13,7 @@ function PostMain({ post }) {
           className="object-cover object-center w-full h-full"
         />
         <div className="absolute top-0 w-full h-full bg-black/20"></div>
-        <div className="absolute bottom-0 z-10 flex flex-col justify-center w-full px-5 py-4 space-y-4 rounded-bl-none md:px-20 lg:bottom-30 md:bottom-20 md:bg-white md:w-170 rounded-b-2xl md:rounded-r-2xl backdrop-blur-sm md:backdrop-blur-none bg-gray-300/40 md:top-1/2">
+        <div className="absolute bottom-0 z-10 flex flex-col justify-center w-full px-5 py-4 space-y-4 rounded-bl-none md:px-20 lg:bottom-30 md:bottom-20 md:bg-white md:w-170 rounded-b-2xl md:rounded-r-2xl backdrop-blur-sm md:backdrop-blur-none bg-gray-800/40 md:top-1/2">
           <h1 className="text-[#1b7ced] md:text-3xl text-xl font-medium">
             {post.title}
           </h1>
