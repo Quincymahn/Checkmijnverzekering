@@ -3,7 +3,7 @@ import { ClockFading, MailSearch, PhoneOutgoing } from "lucide-react";
 function FormThankYouStep({ onReset, submissionTime }) {
   return (
     <div className="h-full p-4 bg-white sm:p-6 lg:p-8 shadow-md-custom rounded-2xl flex flex-col items-center justify-center min-h-[400px]">
-      <div className="max-w-2xl text-center">
+      <div className="w-full text-center sm:max-w-2xl">
         {/* Success Icon */}
         <div className="flex items-center justify-center w-16 h-16 mx-auto mb-6 bg-green-100 rounded-full sm:w-20 sm:h-20">
           <svg
@@ -30,7 +30,7 @@ function FormThankYouStep({ onReset, submissionTime }) {
           contact met u op om uw verzekering te bespreken.
         </p>
 
-        <div className="grid w-full grid-cols-2 gap-3">
+        <div className="grid w-full grid-cols-1 gap-3 sm:grid-cols-2">
           <div className="w-full gap-2 p-4 border border-gray-200 bg-gray-50 rounded-2xl">
             <div className="flex items-center gap-2 text-lg">
               <div className="flex items-center justify-center w-6 h-6 bg-gray-600 border border-white rounded-full">
@@ -99,7 +99,7 @@ function FormThankYouStep({ onReset, submissionTime }) {
             <p className="text-gray-500">
               We staan altijd voor je klaar. Neem gerust contact op!
             </p>
-            <div className="flex items-center justify-center gap-2 mt-3">
+            <div className="flex flex-col items-center justify-center gap-2 mt-3 sm:flex-row">
               <a
                 href="tel:08554015280"
                 className="inline-flex items-center gap-2 px-4 py-2 font-medium text-white transition duration-300 bg-[#00af76] rounded-full cursor-pointer hover:-translate-y-1 hover:shadow-gray-400 hover:shadow-md"
